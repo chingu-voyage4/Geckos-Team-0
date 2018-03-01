@@ -1,28 +1,62 @@
 .App {
   text-align: center;
+  display: grid;
+  grid-template-columns: [column-1] 40px [column-2] 50px [column-3] auto [column-4] 50px [column-5] 40px [column-6];
+  grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4];
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
+.App__header {
   background-color: #222;
-  height: 150px;
+  height: 100px;
   padding: 20px;
   color: white;
+  grid-column-start: column-1;
+  grid-column-end: column-6;
+  grid-row-start: row-1;
+  grid-row-end: row-2;
 }
 
-.App-title {
+.App__title {
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
+.ingredient-container {
+  width: 100%;
+  height: 5rem;
+  border-radius: 10px;
+  background: #6C648B;
+  grid-column-start: column-3;
+  grid-column-end: column-4;
+  grid-row-start: row-3;
+  grid-row-end: row-4;
+  display: grid;
+  grid-template-columns: [search-column-1] 10px [search-column-2] auto [search-column-3] 40px [search-column-4] 10px;
+  grid-template-rows: [search-row-1] 10px [search-row-2] auto [search-row-3] 10px [search-row-4];
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.ingredient-container__form {
+  grid-column-start: search-column-2;
+  grid-column-end: search-column-4;
+  grid-row-start: search-row-2;
+  grid-row-end: search-row-3;
+  display: grid;
+  grid-template-columns: [search-column-1] 10px [search-column-2] auto [search-column-3] 40px [search-column-4] 150px [search-column-5] 10px;
+  grid-template-rows: [search-row-1] 10px [search-row-2] auto [search-row-3] 10px [search-row-4];
 }
+
+.ingredient-container__field {
+  width: 100%;
+  height: 2rem;
+  grid-column-start: search-column-2;
+  grid-column-end: search-column-3;
+  grid-row-start: search-row-2;
+  grid-row-end: search-row-4;
+}
+
+.ingredient-container__submit {
+  grid-column-start: search-column-4;
+  grid-column-end: search-column-5;
+  grid-row-start: search-row-2;
+  grid-row-end: search-row-3;
+}
+
