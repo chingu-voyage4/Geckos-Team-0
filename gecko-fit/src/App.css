@@ -1,28 +1,103 @@
+body {
+  background-color: #f9f3f2;
+}
 .App {
   text-align: center;
+  display: grid;
+  grid-template-columns: [app-column-1] 100%;
+  grid-template-rows: [app-row-1] 80% [app-row-2] 100px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+.App__wrapper {
+  display: grid;
+  grid-template-columns: [column-1] 40px [column-2] 50px [column-3] auto [column-4] 50px [column-5] 40px [column-6];
+  grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] 150px;
+} 
 
-.App-header {
-  background-color: #222;
-  height: 150px;
+.App__header {
+  background:  #222 url("img/Vegetables_Banner_01.png") no-repeat center;
+  height: 100px;
   padding: 20px;
   color: white;
+  grid-column-start: column-1;
+  grid-column-end: column-6;
+  grid-row-start: row-1;
+  grid-row-end: row-2;
 }
 
-.App-title {
-  font-size: 1.5em;
+.App__title {
+  font-size: 2em;
 }
 
-.App-intro {
-  font-size: large;
+.ingredient-container {
+  width: 100%;
+  height: 5rem;
+  border-radius: 10px;
+  background: #6C648B;
+  grid-column-start: column-3;
+  grid-column-end: column-4;
+  grid-row-start: row-4;
+  grid-row-end: row-5;
+  display: grid;
+  grid-template-columns: [search-column-1] 10px [search-column-2] auto [search-column-3] 40px [search-column-4] 10px;
+  grid-template-rows: [search-row-1] 10px [search-row-2] auto [search-row-3] 10px [search-row-4];
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.ingredient-container__form {
+  grid-column-start: search-column-2;
+  grid-column-end: search-column-4;
+  grid-row-start: search-row-2;
+  grid-row-end: search-row-3;
+  display: grid;
+  grid-template-columns: [search-column-1] 10px [search-column-2] auto [search-column-3] 40px [search-column-4] 150px [search-column-5] 10px;
+  grid-template-rows: [search-row-1] 10px [search-row-2] auto [search-row-3] 10px [search-row-4];
 }
+
+.ingredient-container__field {
+  width: 100%;
+  height: 2rem;
+  grid-column-start: search-column-2;
+  grid-column-end: search-column-3;
+  grid-row-start: search-row-2;
+  grid-row-end: search-row-4;
+}
+
+.ingredient-container__submit {
+  grid-column-start: search-column-4;
+  grid-column-end: search-column-5;
+  grid-row-start: search-row-2;
+  grid-row-end: search-row-3;
+}
+
+.ingredient-container__list {
+  grid-column: column-3 / column-4;
+  grid-row: row-5 / row-6;
+}
+
+.ingredient-container__analyze {
+  grid-column-start: column-3;
+  grid-column-end: column-4;
+  grid-row-start: row-7;
+  grid-row-end: row-8;
+}
+
+.footer {
+  grid-column-start: app-column-1;
+  grid-column-end: app-column-1;
+  grid-row-start: app-row-2;
+  grid-row-end: app-row-2;
+  display: grid;
+  grid-template-columns: [footer-column-1] 50% [footer-column-2] 50%;
+  grid-template-rows: [footer-row-1] 50%;
+}
+
+.footer__chingu-link {
+  grid-column: footer-column-1 / footer-column-1;
+  grid-row: footer-row-1 / footer-row-1;
+}
+
+.footer__github-link {
+  grid-column: footer-column-2 / footer-column-2;
+  grid-row: footer-row-1 / footer-row-1;
+}
+
