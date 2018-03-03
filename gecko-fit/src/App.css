@@ -1,18 +1,21 @@
+body {
+  background-color: #f9f3f2;
+}
 .App {
   text-align: center;
   display: grid;
   grid-template-columns: [app-column-1] 100%;
-  grid-template-rows: [app-row-1]80% [app-row-2] 100px;
+  grid-template-rows: [app-row-1] 80% [app-row-2] 100px;
 }
 
 .App__wrapper {
   display: grid;
   grid-template-columns: [column-1] 40px [column-2] 50px [column-3] auto [column-4] 50px [column-5] 40px [column-6];
-  grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] 100px;
+  grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] 150px;
 } 
 
 .App__header {
-  background-color: #222;
+  background:  #222 url("img/Vegetables_Banner_01.png") no-repeat center;
   height: 100px;
   padding: 20px;
   color: white;
@@ -23,7 +26,7 @@
 }
 
 .App__title {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .ingredient-container {
