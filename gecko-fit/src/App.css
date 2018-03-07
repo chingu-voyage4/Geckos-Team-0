@@ -9,9 +9,7 @@ body {
 }
 
 .App__wrapper {
-  display: grid;
-  grid-template-columns: [column-1] 40px [column-2] 50px [column-3] auto [column-4] 50px [column-5] 40px [column-6];
-  grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] 150px;
+
 } 
 
 .App__header {
@@ -27,6 +25,15 @@ body {
 
 .App__title {
   font-size: 2em;
+}
+
+.ingredient-wrapper {
+  grid-column-start: column-2;
+  grid-column-end: column-5;
+  grid-row-start: row-3;
+  display: grid;
+  grid-template-columns: [column-1] 40px [column-2] 50px [column-3] auto [column-4] 50px [column-5] 40px [column-6];
+  grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] 150px [row-8] 50px;
 }
 
 .ingredient-container {
@@ -71,14 +78,14 @@ body {
 
 .ingredient-container__list {
   grid-column: column-3 / column-4;
-  grid-row: row-5 / row-6;
+  grid-row-start: row-5;
 }
 
 .ingredient-container__analyze {
   grid-column-start: column-3;
   grid-column-end: column-4;
-  grid-row-start: row-7;
-  grid-row-end: row-8;
+  grid-row-start: row-6;
+  grid-row-end: row-7;
 }
 
 .footer {
