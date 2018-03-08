@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Select from 'react-select';
 import './App.css';
+import 'react-select/dist/react-select.css';
 
 class App extends Component {
   render() {
