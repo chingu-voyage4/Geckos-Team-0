@@ -5,8 +5,9 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleOptionSelect = this.handleOptionSelect.bind(this);
     this.state = {
-      selectedOption: "",
+      selectedOption: ""
     };
   }
 
@@ -19,10 +20,10 @@ class SearchBar extends Component {
             name="ingredient"
             className="ingredient-container__field"
             placeholder="Type in ingredient to get nutrition info"
-            //value={this.state.term}
+            value={this.state.selectedOption}
             onChange={this.handleOptionSelect}
             onInputChange={this.handleInputChange}
-            //options={this.props.options}
+            options={this.props.searchResult}
           />
           <input
             type="submit"
@@ -34,16 +35,22 @@ class SearchBar extends Component {
     );
   }
 
-  // Display user search input
+  // react-select user input listener
   handleInputChange(term) {
     this.setState({ term });
     this.props.onSearchTermChange(term);
     return term;
   }
+  // display user selection
   handleOptionSelect(selectedOption) {
     this.setState({ selectedOption });
-    console.log(`Selected: ${selectedOption.label}`);
+    this.ingredientSelection(selectedOption);
   }
+  // retrun selected ingredient to App
+  ingredientSelection(data) {
+    this.props.ingredientSelection(data);
+  }
+
 }
 
 export default SearchBar;

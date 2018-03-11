@@ -11,13 +11,11 @@ class App extends Component {
     super(props);
 
     this.state = {
-      autocomplete: "",
-      options: []
+      autocomplete: ""
     };
   }
 
   ingredientSearch(term) {
-    console.log("API search term: " + term);
     fetch(
       //change the last of this api call after to get different results ?q=
       `https://cors-anywhere.herokuapp.com/http://api.edamam.com/auto-complete?q=${term}`
@@ -27,20 +25,25 @@ class App extends Component {
         this.setState({
           autocomplete: data
         });
-        console.log("API return: " + this.state.autocomplete);
+        this.apiResult();
       });
   }
   // format api results for react-select
   apiResult() {
-    let arr = [];
+    let searchResult = [];
     let len = this.state.autocomplete.length;
     for (var i = 0; i < len; i++) {
-      arr.push({
+      searchResult.push({
         value: this.state.autocomplete[i],
         label: this.state.autocomplete[i]
       });
     }
-    return arr;
+    return searchResult;
+  }
+  // fetch selected ingredient from searchBar
+  ingredientSelection(item) {
+    console.log("Selected ingredient:");
+    console.log(item);
   }
   render() {
     return (
@@ -50,6 +53,8 @@ class App extends Component {
           <div className="ingredient-wrapper">
             <SearchBar
               onSearchTermChange={term => this.ingredientSearch(term)}
+              searchResult={this.apiResult()}
+              ingredientSelection={this.ingredientSelection}
             />
             <div className="ingredient-container__list" />
             <div className="ingredient-container__analyze">
