@@ -6,15 +6,23 @@ class SearchBar extends Component {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleOptionSelect = this.handleOptionSelect.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
       selectedOption: ""
     };
   }
-
+  handleAddOption (event) {
+    event.preventDefault();
+    const option = event.target.elements.ingredient.value.trim();
+    const error = this.props.addIngredient(option);
+    this.setState(() => {
+      return { error };
+    });
+  }
   render() {
     return (
       <div className="ingredient-container">
-        <form className="ingredient-container__form">
+        <form className="ingredient-container__form" onSubmit={this.handleAddOption}>
           <Select
             type="text"
             name="ingredient"
@@ -35,6 +43,7 @@ class SearchBar extends Component {
     );
   }
 
+  
   // react-select user input listener
   handleInputChange(term) {
     this.setState({ term });
@@ -46,7 +55,7 @@ class SearchBar extends Component {
     this.setState({ selectedOption });
     this.ingredientSelection(selectedOption);
   }
-  // retrun selected ingredient to App
+  // return selected ingredient to App
   ingredientSelection(data) {
     this.props.ingredientSelection(data);
   }
