@@ -12,8 +12,10 @@ class App extends Component {
         super(props);
         this.addIngredient = this.addIngredient.bind(this);
         this.removeIngredient = this.removeIngredient.bind(this);
+        this.ingredientSelection = this.ingredientSelection.bind(this);
         this.state = {
             autocomplete: '',
+            apiData: [],
             ingredients: []
         };
     }
@@ -83,6 +85,24 @@ class App extends Component {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
+                this.setState((prevState) => {
+                    return {
+                        apiData: prevState.apiData.concat(data)
+                    };
+                });
+                // this.setState({
+                //     totalCalories: data.totalNutrients.hasOwnProperty(
+                //         'ENERC_KCAL'
+                //     )
+                //         ? data.totalNutrients.ENERC_KCAL.quantity
+                //         : 0,
+                //     totalFat: data.totalNutrients.hasOwnProperty('FAT')
+                //         ? data.totalNutrients.FAT.quantity
+                //         : 0,
+                //     totalProtein: data.totalNutrients.hasOwnProperty('PROCNT')
+                //         ? data.totalNutrients.PROCNT.quantity
+                //         : 0
+                // });
             });
     }
     render() {
