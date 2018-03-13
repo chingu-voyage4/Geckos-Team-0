@@ -32,21 +32,21 @@ class App extends Component {
   }
   // remove ingredient from ingredient list
   removeIngredient (ingredient) {
-    /*
     this.setState ((prevState) => {
       return {
         ingredients: prevState.ingredients.filter(element => element !== ingredient)
       };
-    });*/
+    });
       
     console.log(`From removeIngredient: ${ingredient}`);
 
   }
-
+  
   ingredientSearch(term) {
     fetch(
       //change the last of this api call after to get different results ?q=
       `https://cors-anywhere.herokuapp.com/http://api.edamam.com/auto-complete?q=${term}`
+      
     )
       .then(res => res.json())
       .then(data => {
@@ -55,7 +55,8 @@ class App extends Component {
         });
         this.apiResult();
       });
-  }
+  } 
+
   // format api results for react-select
   apiResult() {
     let searchResult = [];
@@ -85,12 +86,10 @@ class App extends Component {
               ingredientSelection={this.ingredientSelection}
               addIngredient={this.addIngredient}
               ingredients={this.state.ingredients}
-              removeIngredient={this.removeIngredient}
             />
             <div className="ingredient-container__list">
               {
-                this.state.ingredients.map((ingredient) => <Ingredient key={ingredient} ingredientText={ingredient}/>)
-                
+                this.state.ingredients.map((ingredient) => <Ingredient key={ingredient} ingredientText={ingredient} removeIngredient={this.removeIngredient}/>)
               }
             </div>
             <div className="ingredient-container__analyze">
