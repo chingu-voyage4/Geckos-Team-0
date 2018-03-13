@@ -87,6 +87,13 @@ body {
   grid-row-start: row-6;
   grid-row-end: row-7;
 }
+.ingredient-item {
+  box-shadow: 5px 5px 6px -5px #7C7D7D;
+  table-layout: auto;
+  width: 100%;
+  empty-cells: show;
+  margin-bottom: 20px;
+}
 
 .footer {
   grid-column-start: app-column-1;
