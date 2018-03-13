@@ -90,19 +90,6 @@ class App extends Component {
                         apiData: prevState.apiData.concat(data)
                     };
                 });
-                // this.setState({
-                //     totalCalories: data.totalNutrients.hasOwnProperty(
-                //         'ENERC_KCAL'
-                //     )
-                //         ? data.totalNutrients.ENERC_KCAL.quantity
-                //         : 0,
-                //     totalFat: data.totalNutrients.hasOwnProperty('FAT')
-                //         ? data.totalNutrients.FAT.quantity
-                //         : 0,
-                //     totalProtein: data.totalNutrients.hasOwnProperty('PROCNT')
-                //         ? data.totalNutrients.PROCNT.quantity
-                //         : 0
-                // });
             });
     }
     render() {
@@ -126,6 +113,65 @@ class App extends Component {
                                     key={ingredient}
                                     ingredientText={ingredient}
                                     removeIngredient={this.removeIngredient}
+                                    calories={
+                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
+                                            'ENERC_KCAL'
+                                        )
+                                            ? this.state.apiData[0]
+                                                  .totalNutrients.ENERC_KCAL
+                                                  .quantity
+                                            : 0
+                                    }
+                                    fat={
+                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
+                                            'FAT'
+                                        )
+                                            ? this.state.apiData[0]
+                                                  .totalNutrients.FAT.quantity
+                                            : 0
+                                    }
+                                    carbs={
+                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
+                                            'CHOCDF'
+                                        )
+                                            ? this.state.apiData[0]
+                                                  .totalNutrients.CHOCDF
+                                                  .quantity
+                                            : 0
+                                    }
+                                    chole={
+                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
+                                            'CHOLE'
+                                        )
+                                            ? this.state.apiData[0]
+                                                  .totalNutrients.CHOLE.quantity
+                                            : 0
+                                    }
+                                    protein={
+                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
+                                            'PROCNT'
+                                        )
+                                            ? this.state.apiData[0]
+                                                  .totalNutrients.PROCNT
+                                                  .quantity
+                                            : 0
+                                    }
+                                    sugar={
+                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
+                                            'SUGAR'
+                                        )
+                                            ? this.state.apiData[0]
+                                                  .totalNutrients.SUGAR.quantity
+                                            : 0
+                                    }
+                                    sodium={
+                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
+                                            'NA'
+                                        )
+                                            ? this.state.apiData[0]
+                                                  .totalNutrients.NA.quantity
+                                            : 0
+                                    }
                                 />
                             ))}
                         </div>
