@@ -6,6 +6,7 @@ import Header from './components/header';
 import SearchBar from './components/searchBar';
 import Ingredient from './components/ingredient';
 import Footer from './components/footer';
+import {API_KEY, API_ID } from './apiKey';
 
 class App extends Component {
     constructor(props) {
@@ -75,12 +76,10 @@ class App extends Component {
     ingredientSelection(item) {
         console.log('Selected ingredient:' + item.label);
         const ingredientName = item.label;
-        const app_id = '20f484de';
-        const app_key = '58758eaee27454caa774cc54092a9fc6';
         fetch(
             //this api call needs quantity , unit , and ingredient.
             //Have a space between each.
-            `https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${app_id}&app_key=${app_key}&ingr=4 oz ${ingredientName} `
+            `https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=4 oz ${ingredientName} `
         )
             .then((res) => res.json())
             .then((data) => {
