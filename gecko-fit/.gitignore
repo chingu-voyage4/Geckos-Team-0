@@ -5,6 +5,7 @@ node_modules
 
 # testing
 /coverage
+/src/apiKey.js
 
 # production
 /build
