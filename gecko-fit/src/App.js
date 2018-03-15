@@ -6,7 +6,7 @@ import Header from './components/header';
 import SearchBar from './components/searchBar';
 import Ingredient from './components/ingredient';
 import Footer from './components/footer';
-import {API_KEY, API_ID } from './apiKey';
+import { API_KEY, API_ID } from './apiKey';
 
 class App extends Component {
     constructor(props) {
@@ -107,67 +107,73 @@ class App extends Component {
                             ingredients={this.state.ingredients}
                         />
                         <div className="ingredient-container__list">
-                            {this.state.ingredients.map((ingredient) => (
+                            {this.state.ingredients.map((ingredient, index) => (
                                 <Ingredient
                                     key={ingredient}
                                     ingredientText={ingredient}
                                     removeIngredient={this.removeIngredient}
                                     calories={
-                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
+                                        this.state.apiData[
+                                            index
+                                        ].totalNutrients.hasOwnProperty(
                                             'ENERC_KCAL'
                                         )
-                                            ? this.state.apiData[0]
+                                            ? this.state.apiData[index]
                                                   .totalNutrients.ENERC_KCAL
                                                   .quantity
                                             : 0
                                     }
                                     fat={
-                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
-                                            'FAT'
-                                        )
-                                            ? this.state.apiData[0]
+                                        this.state.apiData[
+                                            index
+                                        ].totalNutrients.hasOwnProperty('FAT')
+                                            ? this.state.apiData[index]
                                                   .totalNutrients.FAT.quantity
                                             : 0
                                     }
                                     carbs={
-                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
+                                        this.state.apiData[
+                                            index
+                                        ].totalNutrients.hasOwnProperty(
                                             'CHOCDF'
                                         )
-                                            ? this.state.apiData[0]
+                                            ? this.state.apiData[index]
                                                   .totalNutrients.CHOCDF
                                                   .quantity
                                             : 0
                                     }
                                     chole={
-                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
-                                            'CHOLE'
-                                        )
-                                            ? this.state.apiData[0]
+                                        this.state.apiData[
+                                            index
+                                        ].totalNutrients.hasOwnProperty('CHOLE')
+                                            ? this.state.apiData[index]
                                                   .totalNutrients.CHOLE.quantity
                                             : 0
                                     }
                                     protein={
-                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
+                                        this.state.apiData[
+                                            index
+                                        ].totalNutrients.hasOwnProperty(
                                             'PROCNT'
                                         )
-                                            ? this.state.apiData[0]
+                                            ? this.state.apiData[index]
                                                   .totalNutrients.PROCNT
                                                   .quantity
                                             : 0
                                     }
                                     sugar={
-                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
-                                            'SUGAR'
-                                        )
-                                            ? this.state.apiData[0]
+                                        this.state.apiData[
+                                            index
+                                        ].totalNutrients.hasOwnProperty('SUGAR')
+                                            ? this.state.apiData[index]
                                                   .totalNutrients.SUGAR.quantity
                                             : 0
                                     }
                                     sodium={
-                                        this.state.apiData[0].totalNutrients.hasOwnProperty(
-                                            'NA'
-                                        )
-                                            ? this.state.apiData[0]
+                                        this.state.apiData[
+                                            index
+                                        ].totalNutrients.hasOwnProperty('NA')
+                                            ? this.state.apiData[index]
                                                   .totalNutrients.NA.quantity
                                             : 0
                                     }
