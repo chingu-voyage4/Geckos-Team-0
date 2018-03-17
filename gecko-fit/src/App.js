@@ -17,7 +17,8 @@ class App extends Component {
         this.state = {
             autocomplete: '',
             apiData: [],
-            ingredients: []
+            ingredients: [],
+            quantity: ""
         };
     }
     // add ingredient to ingredient list
@@ -73,21 +74,23 @@ class App extends Component {
         return searchResult;
     }
     // fetch selected ingredient from searchBar
-    ingredientSelection(item) {
+    ingredientSelection(item, num) {
         if (item) {
             console.log('Selected ingredient:' + item.label);
+            console.log('Selected quantity: ' + num);
             const ingredientName = item.label;
             fetch(
                 //this api call needs quantity , unit , and ingredient.
                 //Have a space between each.
-                `https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=4 oz ${ingredientName} `
+                `https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=${num} 4 oz ${ingredientName} `
             )
                 .then((res) => res.json())
                 .then((data) => {
                     console.log(data);
                     this.setState((prevState) => {
                         return {
-                            apiData: prevState.apiData.concat(data)
+                            apiData: prevState.apiData.concat(data),
+                            quantity: num
                         };
                     });
                 });
@@ -114,6 +117,7 @@ class App extends Component {
                                     key={ingredient}
                                     ingredientText={ingredient}
                                     removeIngredient={this.removeIngredient}
+                                    quantity={this.state.quantity}
                                     calories={
                                         this.state.apiData[
                                             index
