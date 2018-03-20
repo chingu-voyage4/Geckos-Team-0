@@ -18,7 +18,7 @@ class App extends Component {
             autocomplete: '',
             apiData: [],
             ingredients: [],
-            quantity: ""
+            quantity: []
         };
     }
     // add ingredient to ingredient list
@@ -32,19 +32,25 @@ class App extends Component {
                 ingredients: prevState.ingredients.concat(ingredient)
             };
         });
-        console.log(this.state.ingredients);
+        console.log(`The ingredient: ${this.state.ingredients} The quantity: ${this.state.quantity}`);
     }
     // remove ingredient from ingredient list
     removeIngredient(ingredient) {
+        const index = this.state.ingredients.indexOf(ingredient);
+        console.log(`Index of ingredient: ${index}`);
+        let temp = this.state.quantity;
+        temp.splice(index,1);
         this.setState((prevState) => {
             return {
                 ingredients: prevState.ingredients.filter(
-                    (element) => element !== ingredient
-                )
+                    (element) => element !== ingredient,
+                ),
+                quantity: temp
+                
             };
         });
 
-        console.log(`From removeIngredient: ${ingredient}`);
+        console.log(`From removeIngredient - removed ${ingredient}`);
     }
 
     ingredientSearch(term) {
@@ -79,21 +85,19 @@ class App extends Component {
             console.log('Selected ingredient:' + item.label);
             console.log('Selected quantity: ' + num);
             const ingredientName = item.label;
-            fetch(
-                //this api call needs quantity , unit , and ingredient.
-                //Have a space between each.
-                `https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=${num} 4 oz ${ingredientName} `
-            )
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log(data);
-                    this.setState((prevState) => {
-                        return {
-                            apiData: prevState.apiData.concat(data),
-                            quantity: num
-                        };
-                    });
+            const request = async () => {
+                const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=${num} 4 oz ${ingredientName} `);
+                const data = await response.json();
+                console.log(data);
+                this.setState((prevState) => {
+                    return {
+                        apiData: prevState.apiData.concat(data),
+                        quantity: prevState.quantity.concat(num)
+                    };
                 });
+                this.addIngredient(item.label);
+            }
+            request();
         }
     }
     render() {
@@ -117,7 +121,7 @@ class App extends Component {
                                     key={ingredient}
                                     ingredientText={ingredient}
                                     removeIngredient={this.removeIngredient}
-                                    quantity={this.state.quantity}
+                                    quantity={this.state.quantity[index]}
                                     calories={
                                         this.state.apiData[
                                             index

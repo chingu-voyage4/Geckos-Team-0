@@ -10,25 +10,18 @@ class SearchBar extends Component {
     this.handleQuantity = this.handleQuantity.bind(this);
     this.state = {
       selectedOption: "",
-      quantity: ""
+      quantity: 1
     };
   }
   handleAddOption (event) {
     event.preventDefault();
-    const option = event.target.elements.ingredient.value.trim();
-    const error = this.props.addIngredient(option);
-    this.setState(() => {
-      return { error };
-    });
+    this.ingredientSelection(this.state.selectedOption, this.state.quantity);
   }
   handleQuantity (event) {
     this.setState({quantity: event.target.value});
     console.log(this.state.quantity);
-    if (this.state.quantity >= 1) {
-      console.log('Calling ingredientSelection');
-      this.ingredientSelection(this.state.selectedOption, this.state.quantity);
-    }
   }
+
   render() {
     return (
       <div className="ingredient-container">
@@ -48,7 +41,8 @@ class SearchBar extends Component {
                 name="quantity"  
                 min="1" 
                 max="10" 
-                type="number" 
+                type="number"
+                value={this.state.quantity} 
                 onChange={this.handleQuantity} 
                 />
           <input
