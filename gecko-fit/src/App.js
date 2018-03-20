@@ -19,7 +19,14 @@ class App extends Component {
             autocomplete: '',
             apiData: [],
             ingredients: [],
-            quantity: []
+            quantity: [],
+            calories: [],
+            fat: [],
+            carbs: [],
+            chole: [],
+            protein: [],
+            sugar: [],
+            sodium: []
         };
     }
     // add ingredient to ingredient list
@@ -33,21 +40,33 @@ class App extends Component {
                 ingredients: prevState.ingredients.concat(ingredient)
             };
         });
-        console.log(`The ingredient: ${this.state.ingredients} The quantity: ${this.state.quantity}`);
+        console.log(
+            `The ingredient: ${this.state.ingredients} The quantity: ${
+                this.state.quantity
+            }`
+        );
     }
     // remove ingredient from ingredient list
     removeIngredient(ingredient) {
         const index = this.state.ingredients.indexOf(ingredient);
         console.log(`Index of ingredient: ${index}`);
         let temp = this.state.quantity;
-        temp.splice(index,1);
+        temp.splice(index, 1);
+        //remove all nutrients
+        this.state.apiData.splice(index, 1);
+        this.state.calories.splice(index, 1);
+        this.state.fat.splice(index, 1);
+        this.state.carbs.splice(index, 1);
+        this.state.chole.splice(index, 1);
+        this.state.protein.splice(index, 1);
+        this.state.sugar.splice(index, 1);
+        this.state.sodium.splice(index, 1);
         this.setState((prevState) => {
             return {
                 ingredients: prevState.ingredients.filter(
-                    (element) => element !== ingredient,
+                    (element) => element !== ingredient
                 ),
                 quantity: temp
-                
             };
         });
 
@@ -87,20 +106,80 @@ class App extends Component {
             console.log('Selected quantity: ' + num);
             const ingredientName = item.label;
             const request = async () => {
-                const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=${num} 4 oz ${ingredientName} `);
+                const response = await fetch(
+                    `https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=${num} 4 oz ${ingredientName} `
+                );
                 const data = await response.json();
                 console.log(data);
                 this.setState((prevState) => {
                     return {
                         apiData: prevState.apiData.concat(data),
-                        quantity: prevState.quantity.concat(num)
+                        quantity: prevState.quantity.concat(num),
+                        calories: data.totalNutrients.hasOwnProperty(
+                            'ENERC_KCAL'
+                        )
+                            ? prevState.calories.concat(
+                                  data.totalNutrients.ENERC_KCAL.quantity
+                              )
+                            : prevState.calories.concat(0),
+                        fat: data.totalNutrients.hasOwnProperty('FAT')
+                            ? prevState.fat.concat(
+                                  data.totalNutrients.FAT.quantity
+                              )
+                            : prevState.fat.concat(0),
+                        carbs: data.totalNutrients.hasOwnProperty('CHOCDF')
+                            ? prevState.carbs.concat(
+                                  data.totalNutrients.CHOCDF.quantity
+                              )
+                            : prevState.carbs.concat(0),
+                        chole: data.totalNutrients.hasOwnProperty('CHOLE')
+                            ? prevState.chole.concat(
+                                  data.totalNutrients.CHOLE.quantity
+                              )
+                            : prevState.chole.concat(0),
+                        protein: data.totalNutrients.hasOwnProperty('PROCNT')
+                            ? prevState.protein.concat(
+                                  data.totalNutrients.PROCNT.quantity
+                              )
+                            : prevState.protein.concat(0),
+                        sugar: data.totalNutrients.hasOwnProperty('SUGAR')
+                            ? prevState.sugar.concat(
+                                  data.totalNutrients.SUGAR.quantity
+                              )
+                            : prevState.sugar.concat(0),
+                        sodium: data.totalNutrients.hasOwnProperty('NA')
+                            ? prevState.sodium.concat(
+                                  data.totalNutrients.NA.quantity
+                              )
+                            : prevState.sodium.concat(0)
                     };
                 });
                 this.addIngredient(item.label);
-            }
+            };
             request();
         }
     }
+
+    analyzeRecipe = () => {
+        //add all ingredients
+        let analyzedCalories = this.state.calories.reduce((a, b) => a + b, 0);
+        let analyzedFat = this.state.fat.reduce((a, b) => a + b, 0);
+        let analyzedCarbs = this.state.carbs.reduce((a, b) => a + b, 0);
+        let analyzedChole = this.state.chole.reduce((a, b) => a + b, 0);
+        let analyzedProtein = this.state.protein.reduce((a, b) => a + b, 0);
+        let analyzedSugars = this.state.sugar.reduce((a, b) => a + b, 0);
+        let analyzedSodium = this.state.sodium.reduce((a, b) => a + b, 0);
+        console.table({
+            analyzedCalories: analyzedCalories,
+            analyzedFat: analyzedFat,
+            analyzedCarbs: analyzedCarbs,
+            analyzedChole: analyzedChole,
+            analyzedProtein: analyzedProtein,
+            analyzedSugars: analyzedSugars,
+            analyzedSodium: analyzedSodium
+        });
+    };
+
     render() {
         return (
             <div className="App">
@@ -123,76 +202,22 @@ class App extends Component {
                                     ingredientText={ingredient}
                                     removeIngredient={this.removeIngredient}
                                     quantity={this.state.quantity[index]}
-                                    calories={
-                                        this.state.apiData[
-                                            index
-                                        ].totalNutrients.hasOwnProperty(
-                                            'ENERC_KCAL'
-                                        )
-                                            ? this.state.apiData[index]
-                                                  .totalNutrients.ENERC_KCAL
-                                                  .quantity
-                                            : 0
-                                    }
-                                    fat={
-                                        this.state.apiData[
-                                            index
-                                        ].totalNutrients.hasOwnProperty('FAT')
-                                            ? this.state.apiData[index]
-                                                  .totalNutrients.FAT.quantity
-                                            : 0
-                                    }
-                                    carbs={
-                                        this.state.apiData[
-                                            index
-                                        ].totalNutrients.hasOwnProperty(
-                                            'CHOCDF'
-                                        )
-                                            ? this.state.apiData[index]
-                                                  .totalNutrients.CHOCDF
-                                                  .quantity
-                                            : 0
-                                    }
-                                    chole={
-                                        this.state.apiData[
-                                            index
-                                        ].totalNutrients.hasOwnProperty('CHOLE')
-                                            ? this.state.apiData[index]
-                                                  .totalNutrients.CHOLE.quantity
-                                            : 0
-                                    }
-                                    protein={
-                                        this.state.apiData[
-                                            index
-                                        ].totalNutrients.hasOwnProperty(
-                                            'PROCNT'
-                                        )
-                                            ? this.state.apiData[index]
-                                                  .totalNutrients.PROCNT
-                                                  .quantity
-                                            : 0
-                                    }
-                                    sugar={
-                                        this.state.apiData[
-                                            index
-                                        ].totalNutrients.hasOwnProperty('SUGAR')
-                                            ? this.state.apiData[index]
-                                                  .totalNutrients.SUGAR.quantity
-                                            : 0
-                                    }
-                                    sodium={
-                                        this.state.apiData[
-                                            index
-                                        ].totalNutrients.hasOwnProperty('NA')
-                                            ? this.state.apiData[index]
-                                                  .totalNutrients.NA.quantity
-                                            : 0
-                                    }
+                                    calories={this.state.calories[index]}
+                                    fat={this.state.fat[index]}
+                                    carbs={this.state.carbs[index]}
+                                    chole={this.state.chole[index]}
+                                    protein={this.state.protein[index]}
+                                    sugar={this.state.sugar[index]}
+                                    sodium={this.state.sodium[index]}
                                 />
                             ))}
                         </div>
                         <div className="ingredient-container__analyze">
-                            <input type="button" value="Analyze Recipe" />
+                            <input
+                                type="button"
+                                value="Analyze Recipe"
+                                onClick={this.analyzeRecipe}
+                            />
                             <Nutrition />
                         </div>
                     </div>
