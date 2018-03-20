@@ -5,6 +5,7 @@ import 'react-select/dist/react-select.css';
 import Header from './components/header';
 import SearchBar from './components/searchBar';
 import Ingredient from './components/ingredient';
+import Nutrition from './components/nutrition';
 import Footer from './components/footer';
 import { API_KEY, API_ID } from './apiKey';
 
@@ -184,6 +185,7 @@ class App extends Component {
                         </div>
                         <div className="ingredient-container__analyze">
                             <input type="button" value="Analyze Recipe" />
+                            <Nutrition />
                         </div>
                     </div>
                 </div>
