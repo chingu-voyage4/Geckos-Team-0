@@ -18,7 +18,7 @@ class Ingredient extends Component {
                     </tr>
                     <tr>
                         <td>{this.props.ingredientText}</td>
-                        <td>1</td>
+                        <td>{this.props.quantity}</td>
                         <td>{this.props.calories.toFixed(0)}</td>
                         <td>{this.props.fat.toFixed(0)}</td>
                         <td>{this.props.carbs.toFixed(0)}</td>
