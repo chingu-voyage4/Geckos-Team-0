@@ -3,6 +3,7 @@ import Select from 'react-select';
 import './App.css';
 import 'react-select/dist/react-select.css';
 import Header from './components/header';
+import Menu from './components/menu';
 import SearchBar from './components/searchBar';
 import Ingredient from './components/ingredient';
 import Nutrition from './components/nutrition';
@@ -186,6 +187,7 @@ class App extends Component {
                 <div className="App__wrapper">
                     <Header />
                     <div className="ingredient-wrapper">
+                        <Menu />
                         <SearchBar
                             onSearchTermChange={(term) =>
                                 this.ingredientSearch(term)
