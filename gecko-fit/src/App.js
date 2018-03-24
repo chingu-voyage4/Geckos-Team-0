@@ -7,6 +7,7 @@ import SearchBar from './components/searchBar';
 import Ingredient from './components/ingredient';
 import Nutrition from './components/nutrition';
 import Footer from './components/footer';
+import OptionModal from './components/optionModal';
 import { API_KEY, API_ID } from './apiKey';
 
 class App extends Component {
@@ -26,7 +27,8 @@ class App extends Component {
             chole: [],
             protein: [],
             sugar: [],
-            sodium: []
+            sodium: [],
+            error: false
         };
     }
     // add ingredient to ingredient list
@@ -185,6 +187,7 @@ class App extends Component {
             <div className="App">
                 <div className="App__wrapper">
                     <Header />
+                    <OptionModal error={this.state.error} />
                     <div className="ingredient-wrapper">
                         <SearchBar
                             onSearchTermChange={(term) =>
