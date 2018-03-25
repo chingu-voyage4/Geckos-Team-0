@@ -15,6 +15,7 @@ class App extends Component {
     this.addIngredient = this.addIngredient.bind(this);
     this.removeIngredient = this.removeIngredient.bind(this);
     this.ingredientSelection = this.ingredientSelection.bind(this);
+    this.showAnalysis = this.showAnalysis.bind(this);
     this.state = {
       autocomplete: "",
       apiData: [],
@@ -30,7 +31,8 @@ class App extends Component {
       sodium: [],
       fatSat: [],
       fatMono: [],
-      fatPoly: []
+      fatPoly: [],
+      analysisToggle: false
     };
   }
   // add ingredient to ingredient list
@@ -166,6 +168,10 @@ class App extends Component {
     }
   }
 
+  showAnalysis() {
+    this.setState({ analysisToggle: !this.state.analysisToggle });
+  }
+
   render() {
     return (
       <div className="App">
@@ -200,7 +206,7 @@ class App extends Component {
               <input
                 type="button"
                 value="Analyze Recipe"
-                onClick={this.analyzeRecipe}
+                onClick={this.showAnalysis}
               />
               <Nutrition
                 analyzedCalories={this.state.calories.reduce((a, b) => a + b,0)}
@@ -216,6 +222,7 @@ class App extends Component {
                   this.state.fatMono.reduce((a, b) => a + b, 0) +
                   this.state.fatPoly.reduce((a, b) => a + b, 0)
                 }
+                analysisToggle={this.state.analysisToggle}
               />
             </div>
           </div>
