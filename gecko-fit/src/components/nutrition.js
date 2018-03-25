@@ -8,7 +8,7 @@ class Nutrition extends Component {
       servings: 1
     };
   }
-
+  // Render nutrition label from App inputs
   render() {
     return (
       <section className="performance-facts">

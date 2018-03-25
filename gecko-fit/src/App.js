@@ -203,10 +203,7 @@ class App extends Component {
                 onClick={this.analyzeRecipe}
               />
               <Nutrition
-                analyzedCalories={this.state.calories.reduce(
-                  (a, b) => a + b,
-                  0
-                )}
+                analyzedCalories={this.state.calories.reduce((a, b) => a + b,0)}
                 analyzedFat={this.state.fat.reduce((a, b) => a + b, 0)}
                 analyzedCarbs={this.state.carbs.reduce((a, b) => a + b, 0)}
                 analyzedFiber={this.state.fiber.reduce((a, b) => a + b, 0)}
