@@ -5,21 +5,20 @@ class Nutrition extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      servings: 1,
-      calories: 200,
-      totalFat: 14,
-      satFat: 9,
-      transFat: 0,
-      cholesterol: 55,
-      sodium: 40,
-      totalCarbs: 17,
-      carbsFiber: 1,
-      carbsSugar: 14,
-      proteins: 3
+      servings: 1
     };
   }
 
   render() {
+    console.table({
+      analyzedCalories: this.props.analyzedCalories,
+      analyzedFat: this.props.analyzedFat,
+      analyzedCarbs: this.props.analyzedCarbs,
+      analyzedChole: this.props.analyzedChole,
+      analyzedProtein: this.props.analyzedProtein,
+      analyzedSugars: this.props.analyzedSugars,
+      analyzedSodium: this.props.analyzedSodium
+    });
     return (
       <section className="performance-facts">
         <header className="performance-facts__header">
@@ -38,9 +37,11 @@ class Nutrition extends Component {
             <tr>
               <th colSpan="2">
                 <b>Calories </b>
-                {this.state.calories}
+                {Math.round(this.props.analyzedCalories)}
               </th>
-              <td>Calories from Fat {Math.round(this.state.totalFat * 9)}</td>
+              <td>
+                Calories from Fat {Math.round(this.props.analyzedFat * 9)}
+              </td>
             </tr>
             <tr className="thick-row">
               <td colSpan="3" className="small-info">
@@ -50,74 +51,75 @@ class Nutrition extends Component {
             <tr>
               <th colSpan="2">
                 <b>Total Fat </b>
-                {this.state.totalFat}g
+                {Math.round(this.props.analyzedFat)}g
               </th>
               <td>
-                <b>{Math.round(this.state.totalFat / 65 * 100)}%</b>
+                <b>{Math.round(this.props.analyzedFat / 65 * 100)}%</b>
               </td>
             </tr>
             <tr>
               <td className="blank-cell" />
-              <th>Saturated Fat {this.state.totalFat}g</th>
+              <th>Saturated Fat {"???"}g</th>
               <td>
-                <b>{Math.round(this.state.satFat / 20 * 100)}%</b>
+                <b>{/*Math.round(this.props.analyzedFat / 20 * 100)*/}%</b>
               </td>
             </tr>
             <tr>
               <td className="blank-cell" />
-              <th>Trans Fat {this.state.transFat}g</th>
+              <th>Trans Fat {"???"}g</th>
               <td />
             </tr>
             <tr>
               <th colSpan="2">
                 <b>Cholesterol </b>
-                {this.state.cholesterol}mg
+                {Math.round(this.props.analyzedChole)}mg
               </th>
               <td>
-                <b>{Math.round(this.state.cholesterol / 300 * 100)}%</b>
+                <b>{Math.round(this.props.analyzedChole / 300 * 100)}%</b>
               </td>
             </tr>
             <tr>
               <th colSpan="2">
                 <b>Sodium </b>
-                {this.state.sodium}mg
+                {Math.floor(this.props.analyzedSodium)}mg
               </th>
               <td>
-                <b>{Math.round(this.state.sodium / 2400 * 100)}%</b>
+                <b>{Math.round(this.props.analyzedSodium / 2400 * 100)}%</b>
               </td>
             </tr>
             <tr>
               <th colSpan="2">
                 <b>Total Carbohydrate </b>
-                {this.state.totalCarbs}g
+                {Math.floor(this.props.analyzedCarbs)}g
               </th>
               <td>
-                <b>{Math.round(this.state.totalCarbs / 300 * 100)}%</b>
+                <b>{Math.round(this.props.analyzedCarbs / 300 * 100)}%</b>
               </td>
             </tr>
             <tr>
               <td className="blank-cell" />
-              <th>Dietary Fiber {this.state.carbsFiber}g</th>
+              <th>Dietary Fiber {"???"}g</th>
               <td>
-                <b>{Math.round(this.state.carbsFiber / 25 * 100)}%</b>
+                <b>{/*Math.round(this.state.carbsFiber / 25 * 100)*/}%</b>
               </td>
             </tr>
             <tr>
               <td className="blank-cell" />
-              <th>Sugars {this.state.carbsSugar}g</th>
+              <th>Sugars {this.props.analyzedSugars}g</th>
               <td />
             </tr>
             <tr className="thick-end">
               <th colSpan="2">
                 <b>Protein </b>
-                {this.state.proteins}g
+                {Math.floor(this.props.analyzedProtein)}g
               </th>
               <td />
             </tr>
           </tbody>
         </table>
 
-        <table className="performance-facts__table--grid">
+        {/*
+          <table className="performance-facts__table--grid">
           <tbody>
             <tr>
               <td colSpan="2">Vitamin A 10%</td>
@@ -129,6 +131,7 @@ class Nutrition extends Component {
             </tr>
           </tbody>
         </table>
+        */}
 
         <p className="small-info">
           * Percent Daily Values are based on a 2,000 calorie diet. Your daily
