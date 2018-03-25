@@ -7,8 +7,10 @@ const OptionModal = (props) => (
         onRequestClose={props.handleClearErrors}
         contentLabel="Try a different value"
         ariaHideApp={false}
+        closeTimeoutMS={200}
+        className="modal"
     >
-        <h3>{props.error}</h3>
+        <h3 className="modal__title">{props.error}</h3>
         <button onClick={props.handleClearErrors}>Close</button>
     </Modal>
 );
