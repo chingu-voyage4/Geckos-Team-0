@@ -23,10 +23,14 @@ class App extends Component {
       calories: [],
       fat: [],
       carbs: [],
+      fiber: [],
       chole: [],
       protein: [],
       sugar: [],
-      sodium: []
+      sodium: [],
+      fatSat: [],
+      fatMono: [],
+      fatPoly: []
     };
   }
   // add ingredient to ingredient list
@@ -57,10 +61,14 @@ class App extends Component {
     this.state.calories.splice(index, 1);
     this.state.fat.splice(index, 1);
     this.state.carbs.splice(index, 1);
+    this.state.fiber.splice(index, 1);
     this.state.chole.splice(index, 1);
     this.state.protein.splice(index, 1);
     this.state.sugar.splice(index, 1);
     this.state.sodium.splice(index, 1);
+    this.state.fatSat.splice(index, 1);
+    this.state.fatMono.splice(index, 1);
+    this.state.fatPoly.splice(index, 1);
     this.setState(prevState => {
       return {
         ingredients: prevState.ingredients.filter(
@@ -123,9 +131,21 @@ class App extends Component {
             fat: data.totalNutrients.hasOwnProperty("FAT")
               ? prevState.fat.concat(data.totalNutrients.FAT.quantity)
               : prevState.fat.concat(0),
+            fatSat: data.totalNutrients.hasOwnProperty("FASAT")
+              ? prevState.fatSat.concat(data.totalNutrients.FASAT.quantity)
+              : prevState.fatSat.concat(0),
+            fatMono: data.totalNutrients.hasOwnProperty("FAMS")
+              ? prevState.fatMono.concat(data.totalNutrients.FAMS.quantity)
+              : prevState.fatMono.concat(0),
+            fatPoly: data.totalNutrients.hasOwnProperty("FAPU")
+              ? prevState.fatPoly.concat(data.totalNutrients.FAPU.quantity)
+              : prevState.fatPoly.concat(0),
             carbs: data.totalNutrients.hasOwnProperty("CHOCDF")
               ? prevState.carbs.concat(data.totalNutrients.CHOCDF.quantity)
               : prevState.carbs.concat(0),
+            fiber: data.totalNutrients.hasOwnProperty("FIBTG")
+              ? prevState.fiber.concat(data.totalNutrients.FIBTG.quantity)
+              : prevState.fiber.concat(0),
             chole: data.totalNutrients.hasOwnProperty("CHOLE")
               ? prevState.chole.concat(data.totalNutrients.CHOLE.quantity)
               : prevState.chole.concat(0),
@@ -189,10 +209,16 @@ class App extends Component {
                 )}
                 analyzedFat={this.state.fat.reduce((a, b) => a + b, 0)}
                 analyzedCarbs={this.state.carbs.reduce((a, b) => a + b, 0)}
+                analyzedFiber={this.state.fiber.reduce((a, b) => a + b, 0)}
                 analyzedChole={this.state.chole.reduce((a, b) => a + b, 0)}
                 analyzedProtein={this.state.protein.reduce((a, b) => a + b, 0)}
                 analyzedSugars={this.state.sugar.reduce((a, b) => a + b, 0)}
                 analyzedSodium={this.state.sodium.reduce((a, b) => a + b, 0)}
+                analyzedFatSat={this.state.fatSat.reduce((a, b) => a + b, 0)}
+                analyzedFatTrans={
+                  this.state.fatMono.reduce((a, b) => a + b, 0) +
+                  this.state.fatPoly.reduce((a, b) => a + b, 0)
+                }
               />
             </div>
           </div>

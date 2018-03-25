@@ -10,15 +10,6 @@ class Nutrition extends Component {
   }
 
   render() {
-    console.table({
-      analyzedCalories: this.props.analyzedCalories,
-      analyzedFat: this.props.analyzedFat,
-      analyzedCarbs: this.props.analyzedCarbs,
-      analyzedChole: this.props.analyzedChole,
-      analyzedProtein: this.props.analyzedProtein,
-      analyzedSugars: this.props.analyzedSugars,
-      analyzedSodium: this.props.analyzedSodium
-    });
     return (
       <section className="performance-facts">
         <header className="performance-facts__header">
@@ -59,14 +50,14 @@ class Nutrition extends Component {
             </tr>
             <tr>
               <td className="blank-cell" />
-              <th>Saturated Fat {"???"}g</th>
+              <th>Saturated Fat {Math.round(this.props.analyzedFatSat)}g</th>
               <td>
-                <b>{/*Math.round(this.props.analyzedFat / 20 * 100)*/}%</b>
+                <b>{Math.round(this.props.analyzedFatSat / 20 * 100)}%</b>
               </td>
             </tr>
             <tr>
               <td className="blank-cell" />
-              <th>Trans Fat {"???"}g</th>
+              <th>Trans Fat {Math.round(this.props.analyzedFatTrans)}g</th>
               <td />
             </tr>
             <tr>
@@ -81,7 +72,7 @@ class Nutrition extends Component {
             <tr>
               <th colSpan="2">
                 <b>Sodium </b>
-                {Math.floor(this.props.analyzedSodium)}mg
+                {Math.round(this.props.analyzedSodium)}mg
               </th>
               <td>
                 <b>{Math.round(this.props.analyzedSodium / 2400 * 100)}%</b>
@@ -90,7 +81,7 @@ class Nutrition extends Component {
             <tr>
               <th colSpan="2">
                 <b>Total Carbohydrate </b>
-                {Math.floor(this.props.analyzedCarbs)}g
+                {Math.round(this.props.analyzedCarbs)}g
               </th>
               <td>
                 <b>{Math.round(this.props.analyzedCarbs / 300 * 100)}%</b>
@@ -98,14 +89,14 @@ class Nutrition extends Component {
             </tr>
             <tr>
               <td className="blank-cell" />
-              <th>Dietary Fiber {"???"}g</th>
+              <th>Dietary Fiber {Math.floor(this.props.analyzedFiber)}g</th>
               <td>
-                <b>{/*Math.round(this.state.carbsFiber / 25 * 100)*/}%</b>
+                <b>{Math.round(this.props.analyzedFiber / 25 * 100)}%</b>
               </td>
             </tr>
             <tr>
               <td className="blank-cell" />
-              <th>Sugars {this.props.analyzedSugars}g</th>
+              <th>Sugars {Math.round(this.props.analyzedSugars)}g</th>
               <td />
             </tr>
             <tr className="thick-end">
