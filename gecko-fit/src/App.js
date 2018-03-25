@@ -7,6 +7,7 @@ import SearchBar from './components/searchBar';
 import Ingredient from './components/ingredient';
 import Nutrition from './components/nutrition';
 import Footer from './components/footer';
+import OptionModal from './components/optionModal';
 import { API_KEY, API_ID } from './apiKey';
 
 class App extends Component {
@@ -26,25 +27,21 @@ class App extends Component {
             chole: [],
             protein: [],
             sugar: [],
-            sodium: []
+            sodium: [],
+            error: undefined
         };
     }
     // add ingredient to ingredient list
     addIngredient(ingredient) {
-        if (!ingredient) {
-            return 'Enter an ingredient';
+        if (!ingredient || this.state.ingredients.indexOf(ingredient) > -1) {
+            this.setState({ error: true });
+        } else {
+            this.setState((prevState) => {
+                return {
+                    ingredients: prevState.ingredients.concat(ingredient)
+                };
+            });
         }
-
-        this.setState((prevState) => {
-            return {
-                ingredients: prevState.ingredients.concat(ingredient)
-            };
-        });
-        console.log(
-            `The ingredient: ${this.state.ingredients} The quantity: ${
-                this.state.quantity
-            }`
-        );
     }
     // remove ingredient from ingredient list
     removeIngredient(ingredient) {
@@ -105,58 +102,81 @@ class App extends Component {
             console.log('Selected ingredient:' + item.label);
             console.log('Selected quantity: ' + num);
             const ingredientName = item.label;
-            const request = async () => {
-                const response = await fetch(
-                    `https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=${num} 4 oz ${ingredientName} `
-                );
-                const data = await response.json();
-                console.log(data);
-                this.setState((prevState) => {
-                    return {
-                        apiData: prevState.apiData.concat(data),
-                        quantity: prevState.quantity.concat(num),
-                        calories: data.totalNutrients.hasOwnProperty(
-                            'ENERC_KCAL'
-                        )
-                            ? prevState.calories.concat(
-                                  data.totalNutrients.ENERC_KCAL.quantity
-                              )
-                            : prevState.calories.concat(0),
-                        fat: data.totalNutrients.hasOwnProperty('FAT')
-                            ? prevState.fat.concat(
-                                  data.totalNutrients.FAT.quantity
-                              )
-                            : prevState.fat.concat(0),
-                        carbs: data.totalNutrients.hasOwnProperty('CHOCDF')
-                            ? prevState.carbs.concat(
-                                  data.totalNutrients.CHOCDF.quantity
-                              )
-                            : prevState.carbs.concat(0),
-                        chole: data.totalNutrients.hasOwnProperty('CHOLE')
-                            ? prevState.chole.concat(
-                                  data.totalNutrients.CHOLE.quantity
-                              )
-                            : prevState.chole.concat(0),
-                        protein: data.totalNutrients.hasOwnProperty('PROCNT')
-                            ? prevState.protein.concat(
-                                  data.totalNutrients.PROCNT.quantity
-                              )
-                            : prevState.protein.concat(0),
-                        sugar: data.totalNutrients.hasOwnProperty('SUGAR')
-                            ? prevState.sugar.concat(
-                                  data.totalNutrients.SUGAR.quantity
-                              )
-                            : prevState.sugar.concat(0),
-                        sodium: data.totalNutrients.hasOwnProperty('NA')
-                            ? prevState.sodium.concat(
-                                  data.totalNutrients.NA.quantity
-                              )
-                            : prevState.sodium.concat(0)
-                    };
+            if (this.state.ingredients.indexOf(ingredientName) < 0) {
+                const request = async () => {
+                    const response = await fetch(
+                        `https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=${num} 4 oz ${ingredientName} `
+                    );
+                    const data = await response.json();
+                    console.log(data);
+                    if (data.totalWeight > 0) {
+                        this.setState((prevState) => {
+                            return {
+                                apiData: prevState.apiData.concat(data),
+                                quantity: prevState.quantity.concat(num),
+                                calories: data.totalNutrients.hasOwnProperty(
+                                    'ENERC_KCAL'
+                                )
+                                    ? prevState.calories.concat(
+                                          data.totalNutrients.ENERC_KCAL
+                                              .quantity
+                                      )
+                                    : prevState.calories.concat(0),
+                                fat: data.totalNutrients.hasOwnProperty('FAT')
+                                    ? prevState.fat.concat(
+                                          data.totalNutrients.FAT.quantity
+                                      )
+                                    : prevState.fat.concat(0),
+                                carbs: data.totalNutrients.hasOwnProperty(
+                                    'CHOCDF'
+                                )
+                                    ? prevState.carbs.concat(
+                                          data.totalNutrients.CHOCDF.quantity
+                                      )
+                                    : prevState.carbs.concat(0),
+                                chole: data.totalNutrients.hasOwnProperty(
+                                    'CHOLE'
+                                )
+                                    ? prevState.chole.concat(
+                                          data.totalNutrients.CHOLE.quantity
+                                      )
+                                    : prevState.chole.concat(0),
+                                protein: data.totalNutrients.hasOwnProperty(
+                                    'PROCNT'
+                                )
+                                    ? prevState.protein.concat(
+                                          data.totalNutrients.PROCNT.quantity
+                                      )
+                                    : prevState.protein.concat(0),
+                                sugar: data.totalNutrients.hasOwnProperty(
+                                    'SUGAR'
+                                )
+                                    ? prevState.sugar.concat(
+                                          data.totalNutrients.SUGAR.quantity
+                                      )
+                                    : prevState.sugar.concat(0),
+                                sodium: data.totalNutrients.hasOwnProperty('NA')
+                                    ? prevState.sodium.concat(
+                                          data.totalNutrients.NA.quantity
+                                      )
+                                    : prevState.sodium.concat(0)
+                            };
+                        });
+                        this.addIngredient(item.label);
+                    } else {
+                        this.setState({
+                            error: 'This ingredient does not exist'
+                        });
+                    }
+                };
+                request();
+            } else {
+                this.setState({
+                    error: 'This ingredient is already on the list'
                 });
-                this.addIngredient(item.label);
-            };
-            request();
+            }
+        } else {
+            this.setState({ error: 'This ingredient does not exist' });
         }
     }
 
@@ -180,11 +200,19 @@ class App extends Component {
         });
     };
 
+    handleClearErrors = () => {
+        this.setState({ error: undefined });
+    };
+
     render() {
         return (
             <div className="App">
                 <div className="App__wrapper">
                     <Header />
+                    <OptionModal
+                        error={this.state.error}
+                        handleClearErrors={this.handleClearErrors}
+                    />
                     <div className="ingredient-wrapper">
                         <SearchBar
                             onSearchTermChange={(term) =>
