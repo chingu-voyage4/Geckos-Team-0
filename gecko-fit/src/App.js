@@ -208,7 +208,9 @@ class App extends Component {
                 value="Analyze Recipe"
                 onClick={this.showAnalysis}
               />
-              <Nutrition
+            </div>
+            <div className="ingredient-container__label">
+            <Nutrition
                 analyzedCalories={this.state.calories.reduce((a, b) => a + b,0)}
                 analyzedFat={this.state.fat.reduce((a, b) => a + b, 0)}
                 analyzedCarbs={this.state.carbs.reduce((a, b) => a + b, 0)}
@@ -224,7 +226,7 @@ class App extends Component {
                 }
                 analysisToggle={this.state.analysisToggle}
               />
-            </div>
+              </div>
           </div>
         </div>
         <Footer />

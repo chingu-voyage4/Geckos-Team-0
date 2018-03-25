@@ -96,6 +96,13 @@ body {
   grid-row-start: row-6;
   grid-row-end: row-7;
 }
+.ingredient-container__label {
+  grid-column-start: column-3;
+  grid-column-end: column-4;
+  grid-row-start: row-7;
+  grid-row-end: row-7;
+  margin: 0 auto;
+}
 .ingredient-item {
   box-shadow: 5px 5px 6px -5px #7C7D7D;
   table-layout: auto;
