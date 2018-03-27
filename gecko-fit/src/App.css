@@ -26,13 +26,84 @@ body {
     font-size: 2em;
 }
 
+.navigation {
+  grid-column-start: column-2;
+  grid-column-end: column-3;
+  grid-row-start: row-2;
+}
+.navigation__button {
+  border: 0;
+  padding: 1rem;
+  display: inline-block;
+  background-color: #f9f3f2;
+}
+.navigation__expansion {
+  background-color: #f9f3f2;
+  box-shadow: 3px 3px 8px #7C7D7D;
+  position: absolute;
+  top: 14em;
+  list-style-type: none;
+  padding: 10px;
+  text-align: justify;
+  height: 200px;
+  width: 200px;
+  z-index: 3;
+}
+
+.navigation__wrapper {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 20px;
+  vertical-align: middle;
+  fill: none;
+}
+
+.navigation__wrapper .navigation__line {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+/* line 1 */
+.navigation__wrapper .navigation__line--1 {
+  top: 0;
+}
+/* rotate line 1 to be left part of X */
+.is-active .navigation__wrapper .navigation__line--1 {
+  transform: translateY(8px) translateX(0) rotate(45deg);
+}
+/* line 2 */
+.navigation__wrapper .navigation__line--2 {
+  top: 50%;
+  margin-top: -2px; 
+}
+
+/* hide line 2 when active */
+.is-active .navigation__wrapper .navigation__line--2 {
+  opacity: 0;
+}
+/* line 3 */
+.navigation__wrapper .navigation__line--3 {
+  bottom: 0;
+}
+
+/* rotate line 3 to be right part of X */
+.is-active .navigation__wrapper .navigation__line--3 {
+  transform: translateY(-8px) translateX(0) rotate(-45deg);
+}
+
 .ingredient-wrapper {
-    grid-column-start: column-2;
-    grid-column-end: column-5;
-    grid-row-start: row-3;
-    display: grid;
-    grid-template-columns: [column-1] 40px [column-2] 50px [column-3] auto [column-4] 50px [column-5] 40px [column-6];
-    grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] 150px [row-8] 50px;
+  grid-column-start: column-2;
+  grid-column-end: column-5;
+  grid-row-start: row-3;
+  display: grid;
+  grid-template-columns: [column-1] 40px [column-2] 50px [column-3] auto [column-4] 50px [column-5] 40px [column-6];
+  grid-template-rows: [row-1] 30% [row-2] 150px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] 150px [row-8] 50px;
 }
 
 .ingredient-container {
