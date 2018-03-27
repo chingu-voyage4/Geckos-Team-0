@@ -3,10 +3,12 @@ import Select from "react-select";
 import "./App.css";
 import "react-select/dist/react-select.css";
 import Header from "./components/header";
+import Menu from "./components/menu";
 import SearchBar from "./components/searchBar";
 import Ingredient from "./components/ingredient";
 import Nutrition from "./components/nutrition";
 import Footer from "./components/footer";
+import OptionModal from "./components/optionModal";
 import { API_KEY, API_ID } from "./apiKey";
 
 class App extends Component {
@@ -32,25 +34,21 @@ class App extends Component {
       fatSat: [],
       fatMono: [],
       fatPoly: [],
-      analysisToggle: false
+      analysisToggle: false,
+      error: undefined
     };
   }
   // add ingredient to ingredient list
   addIngredient(ingredient) {
-    if (!ingredient) {
-      return "Enter an ingredient";
+    if (!ingredient || this.state.ingredients.indexOf(ingredient) > -1) {
+      this.setState({ error: true });
+    } else {
+      this.setState(prevState => {
+        return {
+          ingredients: prevState.ingredients.concat(ingredient)
+        };
+      });
     }
-
-    this.setState(prevState => {
-      return {
-        ingredients: prevState.ingredients.concat(ingredient)
-      };
-    });
-    console.log(
-      `The ingredient: ${this.state.ingredients} The quantity: ${
-        this.state.quantity
-      }`
-    );
   }
   // remove ingredient from ingredient list
   removeIngredient(ingredient) {
@@ -115,17 +113,19 @@ class App extends Component {
       console.log("Selected ingredient:" + item.label);
       console.log("Selected quantity: " + num);
       const ingredientName = item.label;
-      const request = async () => {
-        const response = await fetch(
-          `https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=${num} 4 oz ${ingredientName} `
-        );
-        const data = await response.json();
-        console.log(data);
-        this.setState(prevState => {
-          return {
-            apiData: prevState.apiData.concat(data),
-            quantity: prevState.quantity.concat(num),
-            calories: data.totalNutrients.hasOwnProperty("ENERC_KCAL")
+      if (this.state.ingredients.indexOf(ingredientName) < 0) {
+        const request = async () => {
+          const response = await fetch(
+            `https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/nutrition-data?app_id=${API_ID}&app_key=${API_KEY}&ingr=${num} 4 oz ${ingredientName} `
+          );
+          const data = await response.json();
+          console.log(data);
+          if (data.totalWeight > 0) {
+            this.setState(prevState => {
+              return {
+                apiData: prevState.apiData.concat(data),
+                quantity: prevState.quantity.concat(num),
+                calories: data.totalNutrients.hasOwnProperty("ENERC_KCAL")
               ? prevState.calories.concat(
                   data.totalNutrients.ENERC_KCAL.quantity
                 )
@@ -160,13 +160,29 @@ class App extends Component {
             sodium: data.totalNutrients.hasOwnProperty("NA")
               ? prevState.sodium.concat(data.totalNutrients.NA.quantity)
               : prevState.sodium.concat(0)
-          };
+              };
+            });
+            this.addIngredient(item.label);
+          } else {
+            this.setState({
+              error: "This ingredient does not exist"
+            });
+          }
+        };
+        request();
+      } else {
+        this.setState({
+          error: "This ingredient is already on the list"
         });
-        this.addIngredient(item.label);
-      };
-      request();
+      }
+    } else {
+      this.setState({ error: "This ingredient does not exist" });
     }
   }
+
+  handleClearErrors = () => {
+    this.setState({ error: undefined });
+  };
 
   showAnalysis() {
     this.setState({ analysisToggle: !this.state.analysisToggle });
@@ -177,7 +193,12 @@ class App extends Component {
       <div className="App">
         <div className="App__wrapper">
           <Header />
+          <OptionModal
+            error={this.state.error}
+            handleClearErrors={this.handleClearErrors}
+          />
           <div className="ingredient-wrapper">
+            <Menu />
             <SearchBar
               onSearchTermChange={term => this.ingredientSearch(term)}
               searchResult={this.apiResult()}
