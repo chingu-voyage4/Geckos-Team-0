@@ -18,6 +18,7 @@ class App extends Component {
     this.removeIngredient = this.removeIngredient.bind(this);
     this.ingredientSelection = this.ingredientSelection.bind(this);
     this.showAnalysis = this.showAnalysis.bind(this);
+    this.toggleTableHeader = this.toggleTableHeader.bind(this);
     this.state = {
       autocomplete: "",
       apiData: [],
@@ -35,6 +36,7 @@ class App extends Component {
       fatMono: [],
       fatPoly: [],
       analysisToggle: false,
+      ingredientToggle: false,
       error: undefined
     };
   }
@@ -45,7 +47,8 @@ class App extends Component {
     } else {
       this.setState(prevState => {
         return {
-          ingredients: prevState.ingredients.concat(ingredient)
+          ingredients: prevState.ingredients.concat(ingredient),
+          ingredientToggle: true
         };
       });
     }
@@ -77,8 +80,19 @@ class App extends Component {
         quantity: temp
       };
     });
-
+    if (index === 0) {
+      this.toggleTableHeader();
+    }
     console.log(`From removeIngredient - removed ${ingredient}`);
+  }
+
+  toggleTableHeader () {
+    console.log('toggleTableheader has been run');
+    this.setState(() => {
+      return {
+        ingredientToggle: false
+      }
+    });
   }
 
   ingredientSearch(term) {
@@ -207,21 +221,37 @@ class App extends Component {
               ingredients={this.state.ingredients}
             />
             <div className="ingredient-container__list">
-              {this.state.ingredients.map((ingredient, index) => (
-                <Ingredient
-                  key={ingredient}
-                  ingredientText={ingredient}
-                  removeIngredient={this.removeIngredient}
-                  quantity={this.state.quantity[index]}
-                  calories={this.state.calories[index]}
-                  fat={this.state.fat[index]}
-                  carbs={this.state.carbs[index]}
-                  chole={this.state.chole[index]}
-                  protein={this.state.protein[index]}
-                  sugar={this.state.sugar[index]}
-                  sodium={this.state.sodium[index]}
-                />
-              ))}
+              <table className="ingredient-item">
+                <tbody>
+                  {this.state.ingredientToggle && (
+                    <tr>
+                    <th>Ingredient</th>
+                    <th>Quantity</th>
+                    <th>Calories</th>
+                    <th>Fat</th>
+                    <th>Carbohydrates</th>
+                    <th>Cholesterol</th>
+                    <th>Proteins</th>
+                    <th>Sugars</th>
+                    <th>Sodium</th>
+                  </tr>)}
+                  {this.state.ingredients.map((ingredient, index) => (
+                    <Ingredient
+                      key={ingredient}
+                      ingredientText={ingredient}
+                      removeIngredient={this.removeIngredient}
+                      quantity={this.state.quantity[index]}
+                      calories={this.state.calories[index]}
+                      fat={this.state.fat[index]}
+                      carbs={this.state.carbs[index]}
+                      chole={this.state.chole[index]}
+                      protein={this.state.protein[index]}
+                      sugar={this.state.sugar[index]}
+                      sodium={this.state.sodium[index]}
+                    />
+                  ))}
+                </tbody>
+              </table>
             </div>
             <div className="ingredient-container__analyze">
               <input
