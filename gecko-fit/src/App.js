@@ -18,7 +18,6 @@ class App extends Component {
     this.removeIngredient = this.removeIngredient.bind(this);
     this.ingredientSelection = this.ingredientSelection.bind(this);
     this.showAnalysis = this.showAnalysis.bind(this);
-    this.toggleTableHeader = this.toggleTableHeader.bind(this);
     this.state = {
       autocomplete: "",
       apiData: [],
@@ -36,7 +35,6 @@ class App extends Component {
       fatMono: [],
       fatPoly: [],
       analysisToggle: false,
-      ingredientToggle: false,
       error: undefined
     };
   }
@@ -47,8 +45,7 @@ class App extends Component {
     } else {
       this.setState(prevState => {
         return {
-          ingredients: prevState.ingredients.concat(ingredient),
-          ingredientToggle: true
+          ingredients: prevState.ingredients.concat(ingredient)
         };
       });
     }
@@ -80,19 +77,7 @@ class App extends Component {
         quantity: temp
       };
     });
-    if (index === 0) {
-      this.toggleTableHeader();
-    }
     console.log(`From removeIngredient - removed ${ingredient}`);
-  }
-
-  toggleTableHeader () {
-    console.log('toggleTableheader has been run');
-    this.setState(() => {
-      return {
-        ingredientToggle: false
-      }
-    });
   }
 
   ingredientSearch(term) {
@@ -223,7 +208,7 @@ class App extends Component {
             <div className="ingredient-container__list">
               <table className="ingredient-item">
                 <tbody>
-                  {this.state.ingredientToggle && (
+                  {this.state.ingredients.length > 0 && (
                     <tr>
                     <th>Ingredient</th>
                     <th>Quantity</th>
