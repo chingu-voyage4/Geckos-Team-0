@@ -77,7 +77,6 @@ class App extends Component {
         quantity: temp
       };
     });
-
     console.log(`From removeIngredient - removed ${ingredient}`);
   }
 
@@ -207,21 +206,37 @@ class App extends Component {
               ingredients={this.state.ingredients}
             />
             <div className="ingredient-container__list">
-              {this.state.ingredients.map((ingredient, index) => (
-                <Ingredient
-                  key={ingredient}
-                  ingredientText={ingredient}
-                  removeIngredient={this.removeIngredient}
-                  quantity={this.state.quantity[index]}
-                  calories={this.state.calories[index]}
-                  fat={this.state.fat[index]}
-                  carbs={this.state.carbs[index]}
-                  chole={this.state.chole[index]}
-                  protein={this.state.protein[index]}
-                  sugar={this.state.sugar[index]}
-                  sodium={this.state.sodium[index]}
-                />
-              ))}
+              <table className="ingredient-item">
+                <tbody>
+                  {this.state.ingredients.length > 0 && (
+                    <tr>
+                    <th>Ingredient</th>
+                    <th>Quantity</th>
+                    <th>Calories</th>
+                    <th>Fat</th>
+                    <th>Carbohydrates</th>
+                    <th>Cholesterol</th>
+                    <th>Proteins</th>
+                    <th>Sugars</th>
+                    <th>Sodium</th>
+                  </tr>)}
+                  {this.state.ingredients.map((ingredient, index) => (
+                    <Ingredient
+                      key={ingredient}
+                      ingredientText={ingredient}
+                      removeIngredient={this.removeIngredient}
+                      quantity={this.state.quantity[index]}
+                      calories={this.state.calories[index]}
+                      fat={this.state.fat[index]}
+                      carbs={this.state.carbs[index]}
+                      chole={this.state.chole[index]}
+                      protein={this.state.protein[index]}
+                      sugar={this.state.sugar[index]}
+                      sodium={this.state.sodium[index]}
+                    />
+                  ))}
+                </tbody>
+              </table>
             </div>
             <div className="ingredient-container__analyze">
               <input
