@@ -294,6 +294,7 @@ class App extends Component {
                         </div>
                         <div className="ingredient-container__analyze">
                             <input
+                                className="ingredient-container__analyze__button"
                                 type="button"
                                 value="Analyze Recipe"
                                 onClick={this.showAnalysis}
