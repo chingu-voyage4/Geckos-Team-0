@@ -11,7 +11,9 @@ const OptionModal = (props) => (
         className="modal"
     >
         <h3 className="modal__title">{props.error}</h3>
-        <button onClick={props.handleClearErrors}>Close</button>
+        <button className="modal__button" onClick={props.handleClearErrors}>
+            Close
+        </button>
     </Modal>
 );
 

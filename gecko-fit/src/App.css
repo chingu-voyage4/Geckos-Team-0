@@ -8,9 +8,6 @@ body {
     grid-template-rows: [app-row-1] 80% [app-row-2] 100px;
 }
 
-.App__wrapper {
-}
-
 .App__header {
     background: #222 url('img/Vegetables_Banner_01.png') no-repeat center;
     height: 100px;
@@ -27,83 +24,83 @@ body {
 }
 
 .navigation {
-  grid-column-start: column-2;
-  grid-column-end: column-3;
-  grid-row-start: row-2;
+    grid-column-start: column-2;
+    grid-column-end: column-3;
+    grid-row-start: row-2;
 }
 .navigation__button {
-  border: 0;
-  padding: 1rem;
-  display: inline-block;
-  background-color: #f9f3f2;
+    border: 0;
+    padding: 1rem;
+    display: inline-block;
+    background-color: #f9f3f2;
 }
 .navigation__expansion {
-  background-color: #f9f3f2;
-  box-shadow: 3px 3px 8px #7C7D7D;
-  position: absolute;
-  top: 14em;
-  list-style-type: none;
-  padding: 10px;
-  text-align: justify;
-  height: 200px;
-  width: 200px;
-  z-index: 3;
+    background-color: #f9f3f2;
+    box-shadow: 3px 3px 8px #7c7d7d;
+    position: absolute;
+    top: 14em;
+    list-style-type: none;
+    padding: 10px;
+    text-align: justify;
+    height: 200px;
+    width: 200px;
+    z-index: 3;
 }
 
 .navigation__wrapper {
-  position: relative;
-  display: inline-block;
-  width: 28px;
-  height: 20px;
-  vertical-align: middle;
-  fill: none;
+    position: relative;
+    display: inline-block;
+    width: 28px;
+    height: 20px;
+    vertical-align: middle;
+    fill: none;
 }
 
 .navigation__wrapper .navigation__line {
-  position: absolute;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 4px;
-  background-color: #000;
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    position: absolute;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #000;
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 /* line 1 */
 .navigation__wrapper .navigation__line--1 {
-  top: 0;
+    top: 0;
 }
 /* rotate line 1 to be left part of X */
 .is-active .navigation__wrapper .navigation__line--1 {
-  transform: translateY(8px) translateX(0) rotate(45deg);
+    transform: translateY(8px) translateX(0) rotate(45deg);
 }
 /* line 2 */
 .navigation__wrapper .navigation__line--2 {
-  top: 50%;
-  margin-top: -2px; 
+    top: 50%;
+    margin-top: -2px;
 }
 
 /* hide line 2 when active */
 .is-active .navigation__wrapper .navigation__line--2 {
-  opacity: 0;
+    opacity: 0;
 }
 /* line 3 */
 .navigation__wrapper .navigation__line--3 {
-  bottom: 0;
+    bottom: 0;
 }
 
 /* rotate line 3 to be right part of X */
 .is-active .navigation__wrapper .navigation__line--3 {
-  transform: translateY(-8px) translateX(0) rotate(-45deg);
+    transform: translateY(-8px) translateX(0) rotate(-45deg);
 }
 
 .ingredient-wrapper {
-  grid-column-start: column-2;
-  grid-column-end: column-5;
-  grid-row-start: row-3;
-  display: grid;
-  grid-template-columns: [column-1] 40px [column-2] 50px [column-3] auto [column-4] 50px [column-5] 40px [column-6];
-  grid-template-rows: [row-1] 30% [row-2] 150px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] 150px [row-8] 50px;
+    grid-column-start: column-2;
+    grid-column-end: column-5;
+    grid-row-start: row-3;
+    display: grid;
+    grid-template-columns: [column-1] 40px [column-2] 50px [column-3] auto [column-4] 50px [column-5] 40px [column-6];
+    grid-template-rows: [row-1] 30% [row-2] 150px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] 150px [row-8] 50px;
 }
 
 .ingredient-container {
@@ -140,7 +137,7 @@ body {
 }
 
 .ingredient-container__quantity {
-    height: 2rem;
+    height: 1.9rem;
     width: 3em;
     grid-column-start: search-column-4;
     grid-column-end: search-column-5;
@@ -153,6 +150,23 @@ body {
     grid-column-end: search-column-7;
     grid-row-start: search-row-2;
     grid-row-end: search-row-3;
+    background: #fafafa;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #212121;
+    border: 0;
+    border-radius: 2px;
+    height: 2.2rem;
+    cursor: pointer;
+    outline: 0;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.28s cubic-bezier(0.5, 0, 0.3, 1);
+}
+
+.ingredient-container__submit:active {
+    box-shadow: 0 6px 9px 2px rgba(0, 0, 0, 0.14),
+        0 2px 12px 3px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
 }
 
 .ingredient-container__list {
@@ -166,12 +180,39 @@ body {
     grid-row-start: row-6;
     grid-row-end: row-7;
 }
+
+.ingredient-container__analyze__button {
+    background: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fda302;
+    border: 1px solid #fda302;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: 0;
+    height: 2rem;
+    width: 8rem;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.28s cubic-bezier(0.5, 0, 0.3, 1);
+}
+
+.ingredient-container__analyze__button:active {
+    box-shadow: 0 6px 9px 2px rgba(0, 0, 0, 0.14),
+        0 2px 12px 3px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
+}
+
+.ingredient-container__analyze__button:hover {
+    background: #fda302;
+    color: white;
+}
+
 .ingredient-container__label {
-  grid-column-start: column-3;
-  grid-column-end: column-4;
-  grid-row-start: row-7;
-  grid-row-end: row-7;
-  margin: 0 auto;
+    grid-column-start: column-3;
+    grid-column-end: column-4;
+    grid-row-start: row-7;
+    grid-row-end: row-7;
+    margin: 0 auto;
 }
 .ingredient-item {
     box-shadow: 5px 5px 6px -5px #7c7d7d;
@@ -179,6 +220,17 @@ body {
     width: 100%;
     empty-cells: show;
     margin-bottom: 20px;
+}
+
+.ingredient-item__delete-button {
+    background: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: 0;
+    margin: 0.5rem 0;
+    border: 0;
 }
 
 .footer {
@@ -233,4 +285,19 @@ body {
 .modal__title {
     margin: 0 0 1rem 0;
     font-weight: 300;
+}
+
+.modal__button {
+    background: #fafafa;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #212121;
+    border: 0;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: 0;
+    height: 1.7rem;
+    width: 4rem;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
