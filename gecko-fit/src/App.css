@@ -137,7 +137,7 @@ body {
 }
 
 .ingredient-container__quantity {
-    height: 2rem;
+    height: 1.9rem;
     width: 3em;
     grid-column-start: search-column-4;
     grid-column-end: search-column-5;
@@ -156,8 +156,17 @@ body {
     color: #212121;
     border: 0;
     border-radius: 2px;
+    height: 2.2rem;
     cursor: pointer;
     outline: 0;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.28s cubic-bezier(0.5, 0, 0.3, 1);
+}
+
+.ingredient-container__submit:active {
+    box-shadow: 0 6px 9px 2px rgba(0, 0, 0, 0.14),
+        0 2px 12px 3px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
 }
 
 .ingredient-container__list {
@@ -173,17 +182,31 @@ body {
 }
 
 .ingredient-container__analyze__button {
-    background: #fba100;
+    background: none;
     font-size: 0.8rem;
     font-weight: 500;
-    color: white;
-    border: 0;
+    color: #fda302;
+    border: 1px solid #fda302;
     border-radius: 2px;
     cursor: pointer;
     outline: 0;
     height: 2rem;
     width: 8rem;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.28s cubic-bezier(0.5, 0, 0.3, 1);
 }
+
+.ingredient-container__analyze__button:active {
+    box-shadow: 0 6px 9px 2px rgba(0, 0, 0, 0.14),
+        0 2px 12px 3px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
+}
+
+.ingredient-container__analyze__button:hover {
+    background: #fda302;
+    color: white;
+}
+
 .ingredient-container__label {
     grid-column-start: column-3;
     grid-column-end: column-4;
@@ -197,6 +220,17 @@ body {
     width: 100%;
     empty-cells: show;
     margin-bottom: 20px;
+}
+
+.ingredient-item__delete-button {
+    background: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: 0;
+    margin: 0.5rem 0;
+    border: 0;
 }
 
 .footer {
@@ -264,4 +298,6 @@ body {
     outline: 0;
     height: 1.7rem;
     width: 4rem;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }

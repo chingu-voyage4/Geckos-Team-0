@@ -293,12 +293,14 @@ class App extends Component {
                             </table>
                         </div>
                         <div className="ingredient-container__analyze">
-                            <input
-                                className="ingredient-container__analyze__button"
-                                type="button"
-                                value="Analyze Recipe"
-                                onClick={this.showAnalysis}
-                            />
+                            {this.state.ingredients.length > 0 && (
+                                <input
+                                    className="ingredient-container__analyze__button"
+                                    type="button"
+                                    value="Analyze Recipe"
+                                    onClick={this.showAnalysis}
+                                />
+                            )}
                         </div>
                         <div className="ingredient-container__label">
                             <Nutrition
