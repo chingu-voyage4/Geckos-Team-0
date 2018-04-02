@@ -4,15 +4,19 @@ class Ingredient extends Component {
     render() {
         return (
             <tr>
-                <td>{this.props.ingredientText}</td>
-                <td>{this.props.quantity}</td>
-                <td>{this.props.calories.toFixed(0)}</td>
-                <td>{this.props.fat.toFixed(0)}</td>
-                <td>{this.props.carbs.toFixed(0)}</td>
-                <td>{this.props.chole.toFixed(0)}</td>
-                <td>{this.props.protein.toFixed(0)}</td>
-                <td>{this.props.sugar.toFixed(0)}</td>
-                <td>{this.props.sodium.toFixed(0)}</td>
+                <td tableHeadData="Ingredient">{this.props.ingredientText}</td>
+                <td tableHeadData="Ounces">{this.props.quantity}</td>
+                <td tableHeadData="Calories">
+                    {this.props.calories.toFixed(0)}
+                </td>
+                <td tableHeadData="Fat">{this.props.fat.toFixed(0)}</td>
+                <td tableHeadData="Carbs">{this.props.carbs.toFixed(0)}</td>
+                <td tableHeadData="Cholesterol">
+                    {this.props.chole.toFixed(0)}
+                </td>
+                <td tableHeadData="Protein">{this.props.protein.toFixed(0)}</td>
+                <td tableHeadData="Sugar">{this.props.sugar.toFixed(0)}</td>
+                <td tableHeadData="Sodium">{this.props.sodium.toFixed(0)}</td>
                 <td>
                     <button
                         className="ingredient-item__delete-button"

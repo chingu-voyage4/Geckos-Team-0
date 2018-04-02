@@ -301,3 +301,41 @@ body {
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
         0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
+
+/* Media Queries */
+@media screen and (max-width: 700px) {
+    .ingredient-item,
+    .ingredient-item tbody,
+    .ingredient-item tr,
+    .ingredient-item td {
+        display: block;
+    }
+
+    .ingredient-item__head-row {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+    }
+
+    .ingredient-item td {
+        border: none;
+        position: relative;
+        padding-left: 40%;
+        white-space: normal;
+        text-align: left;
+    }
+
+    .ingredient-item td:before {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .ingredient-item td:before {
+        content: attr(tableHeadData);
+    }
+}

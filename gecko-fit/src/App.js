@@ -250,7 +250,7 @@ class App extends Component {
                             <table className="ingredient-item">
                                 <tbody>
                                     {this.state.ingredients.length > 0 && (
-                                        <tr>
+                                        <tr className="ingredient-item__head-row">
                                             <th>Ingredient</th>
                                             <th>Ounces</th>
                                             <th>Calories</th>
