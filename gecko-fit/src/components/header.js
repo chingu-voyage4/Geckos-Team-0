@@ -4,8 +4,10 @@ class Header extends Component {
   constructor(props) {
     super(props);
     const defaultImg = require('../img/Food_00.jpg');
+    const logo = require('../img/Gecko_fit_logo.png');
     this.state = {
-      imgUrl:  defaultImg
+      imgUrl:  defaultImg,
+      logo: logo
     }
   }
   randomImg() {
@@ -31,7 +33,7 @@ class Header extends Component {
       };
       return (
         <header className="App__header" style={header}>
-          <h1 className="App__title">Gecko Fit</h1>
+          <img src={this.state.logo} alt='Gecko Fit logo' height='100' width='100' />
         </header>
       );
     }
