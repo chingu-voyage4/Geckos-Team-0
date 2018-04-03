@@ -9,7 +9,7 @@ body {
 }
 
 .App__header {
-    background: #222 url('img/Vegetables_Banner_01.png') no-repeat center;
+    /*background: #222 url('img/Vegetables_Banner_01.png') no-repeat center;*/
     height: 100px;
     padding: 20px;
     color: white;
