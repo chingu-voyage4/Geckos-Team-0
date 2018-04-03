@@ -9,7 +9,6 @@ body {
 }
 
 .App__header {
-    /*background: #222 url('img/Vegetables_Banner_01.png') no-repeat center;*/
     height: 100px;
     padding: 20px;
     color: white;
@@ -239,7 +238,7 @@ body {
     grid-row-start: app-row-2;
     grid-row-end: app-row-2;
     display: grid;
-    grid-template-columns: [footer-column-1] 50% [footer-column-2] 50%;
+    grid-template-columns: [footer-column-1] 30% [footer-column-2] 30% [footer-column-3] 35%;
     grid-template-rows: [footer-row-1] 50%;
 }
 
@@ -251,6 +250,13 @@ body {
 .footer__github-link {
     grid-column: footer-column-2 / footer-column-2;
     grid-row: footer-row-1 / footer-row-1;
+}
+
+
+.footer__edamam-link {
+    grid-column: footer-column-3 / footer-column-3;
+    grid-row: footer-row-1 / footer-row-1;
+
 }
 
 /* This section is for React-Modals */
