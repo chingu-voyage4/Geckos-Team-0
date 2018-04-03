@@ -4,19 +4,23 @@ class Ingredient extends Component {
     render() {
         return (
             <tr>
-                <td tableHeadData="Ingredient">{this.props.ingredientText}</td>
-                <td tableHeadData="Ounces">{this.props.quantity}</td>
-                <td tableHeadData="Calories">
+                <td table-head-data="Ingredient">
+                    {this.props.ingredientText}
+                </td>
+                <td table-head-data="Ounces">{this.props.quantity}</td>
+                <td table-head-data="Calories">
                     {this.props.calories.toFixed(0)}
                 </td>
-                <td tableHeadData="Fat">{this.props.fat.toFixed(0)}</td>
-                <td tableHeadData="Carbs">{this.props.carbs.toFixed(0)}</td>
-                <td tableHeadData="Cholesterol">
+                <td table-head-data="Fat">{this.props.fat.toFixed(0)}</td>
+                <td table-head-data="Carbs">{this.props.carbs.toFixed(0)}</td>
+                <td table-head-data="Cholesterol">
                     {this.props.chole.toFixed(0)}
                 </td>
-                <td tableHeadData="Protein">{this.props.protein.toFixed(0)}</td>
-                <td tableHeadData="Sugar">{this.props.sugar.toFixed(0)}</td>
-                <td tableHeadData="Sodium">{this.props.sodium.toFixed(0)}</td>
+                <td table-head-data="Protein">
+                    {this.props.protein.toFixed(0)}
+                </td>
+                <td table-head-data="Sugar">{this.props.sugar.toFixed(0)}</td>
+                <td table-head-data="Sodium">{this.props.sodium.toFixed(0)}</td>
                 <td>
                     <button
                         className="ingredient-item__delete-button"
@@ -26,7 +30,7 @@ class Ingredient extends Component {
                             )
                         }
                     >
-                        X
+                        Remove
                     </button>
                 </td>
             </tr>

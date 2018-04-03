@@ -182,10 +182,10 @@ body {
 }
 
 .ingredient-container__analyze__button {
-    background: none;
+    background: #fda302;
     font-size: 0.8rem;
     font-weight: 500;
-    color: #fda302;
+    color: white;
     border: 1px solid #fda302;
     border-radius: 2px;
     cursor: pointer;
@@ -203,8 +203,8 @@ body {
 }
 
 .ingredient-container__analyze__button:hover {
-    background: #fda302;
-    color: white;
+    background: none;
+    color: #fda302;
 }
 
 .ingredient-container__label {
@@ -223,14 +223,19 @@ body {
 }
 
 .ingredient-item__delete-button {
-    background: none;
+    background: rgba(253, 163, 2, 0.4);
+    color: white;
     font-size: 0.8rem;
-    font-weight: 500;
+    font-weight: 200;
     border-radius: 2px;
     cursor: pointer;
     outline: 0;
     margin: 0.5rem 0;
     border: 0;
+}
+
+.ingredient-item__delete-button:hover {
+    background: rgba(253, 163, 2, 1);
 }
 
 .footer {
@@ -303,11 +308,12 @@ body {
 }
 
 /* Media Queries */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
     .ingredient-item,
     .ingredient-item tbody,
     .ingredient-item tr,
-    .ingredient-item td {
+    .ingredient-item td,
+    .ingredient-item__delete-button {
         display: block;
     }
 
@@ -320,9 +326,10 @@ body {
     .ingredient-item td {
         border: none;
         position: relative;
-        padding-left: 40%;
+        padding: 2% 0 2% 60%;
         white-space: normal;
         text-align: left;
+        font-size: 0.9rem;
     }
 
     .ingredient-item td:before {
@@ -336,6 +343,24 @@ body {
     }
 
     .ingredient-item td:before {
-        content: attr(tableHeadData);
+        content: attr(table-head-data);
+        padding: 2% 0 2% 15%;
+        font-size: 0.9rem;
+    }
+
+    .ingredient-item tr {
+        border-bottom: 1px solid #6c648b;
+    }
+
+    .ingredient-item__delete-button {
+        background: rgba(253, 163, 2, 0.4);
+        color: white;
+        font-size: 0.8rem;
+        font-weight: 200;
+        border-radius: 2px;
+        cursor: pointer;
+        outline: 0;
+        margin: 0 0 0 60%;
+        border: 0;
     }
 }
