@@ -9,6 +9,7 @@ import Ingredient from "./components/ingredient";
 import Nutrition from "./components/nutrition";
 import Footer from "./components/footer";
 import OptionModal from "./components/optionModal";
+import CalcBMI from "./components/calcBMI";
 import { API_KEY, API_ID } from "./apiKey";
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
     this.removeIngredient = this.removeIngredient.bind(this);
     this.ingredientSelection = this.ingredientSelection.bind(this);
     this.showAnalysis = this.showAnalysis.bind(this);
+    this.showCalc = this.showCalc.bind(this);
     this.state = {
       autocomplete: "",
       apiData: [],
@@ -35,6 +37,7 @@ class App extends Component {
       fatMono: [],
       fatPoly: [],
       analysisToggle: false,
+      bmiCalcToggle: false,
       error: undefined
     };
   }
@@ -188,6 +191,10 @@ class App extends Component {
     this.setState({ analysisToggle: !this.state.analysisToggle });
   }
 
+  showCalc() {
+    this.setState({ bmiCalcToggle: !this.state.bmiCalcToggle });
+  }
+
   render() {
     return (
       <div className="App">
@@ -197,8 +204,13 @@ class App extends Component {
             error={this.state.error}
             handleClearErrors={this.handleClearErrors}
           />
+          <CalcBMI 
+            bmiCalcToggle={this.state.bmiCalcToggle}
+          />
           <div className="ingredient-wrapper">
-            <Menu />
+            <Menu 
+              showCalc={this.showCalc}
+            />
             <SearchBar
               onSearchTermChange={term => this.ingredientSearch(term)}
               searchResult={this.apiResult()}

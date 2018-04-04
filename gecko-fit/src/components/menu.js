@@ -31,7 +31,7 @@ class Menu extends Component {
         <div>
           {this.state.menuOpen && (
             <ul className="navigation__expansion">
-              <li><button>BMI Calculator</button></li>
+              <li><button onClick={this.props.showCalc}>BMI Calculator</button></li>
               <li><a href="">About Us</a></li>
               <li><a href="">About App</a></li>  
             </ul>
