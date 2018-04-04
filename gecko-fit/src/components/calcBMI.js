@@ -39,7 +39,7 @@ class CalcBMI extends Component {
           </div>
           <div>
             <form>
-              Feet:
+              <label>Feet:</label>
               <input
                 type="number"
                 name="feet"
@@ -47,7 +47,7 @@ class CalcBMI extends Component {
                 onChange={e => this.handleFeetChange(e.target.value)}
                 onFocus={this.handleFocus}
               />
-              Inches:
+              <label>Inches:</label>
               <input
                 type="number"
                 name="inches"
@@ -56,7 +56,7 @@ class CalcBMI extends Component {
                 onFocus={this.handleFocus}
               />
               <div>
-                Weight:
+                <label>Weight:</label>
                 <input
                   type="number"
                   name="weight"
@@ -70,6 +70,7 @@ class CalcBMI extends Component {
           <input
             type="button"
             name="calcBMI"
+            className="modal_button"
             value="Show BMI"
             onClick={this.calculateBMI}
           />
