@@ -211,7 +211,7 @@ body {
     grid-column-start: column-3;
     grid-column-end: column-4;
     grid-row-start: row-7;
-    grid-row-end: row-7;
+    grid-row-end: span 3;
     margin: 0 auto;
 }
 .ingredient-item {

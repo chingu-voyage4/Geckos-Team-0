@@ -56,9 +56,11 @@ class App extends Component {
     // remove ingredient from ingredient list
     removeIngredient(ingredient) {
         const index = this.state.ingredients.indexOf(ingredient);
-        console.log(`Index of ingredient: ${index}`);
         let temp = this.state.quantity;
         temp.splice(index, 1);
+        if (this.state.ingredients.length === 1) {
+            this.showAnalysis();
+        }
         //remove all nutrients
         this.state.apiData.splice(index, 1);
         this.state.calories.splice(index, 1);
@@ -80,7 +82,7 @@ class App extends Component {
                 quantity: temp
             };
         });
-        console.log(`From removeIngredient - removed ${ingredient}`);
+        
     }
 
     ingredientSearch(term) {
@@ -360,10 +362,11 @@ class App extends Component {
                                     this.state.fatPoly.reduce(
                                         (a, b) => a + b,
                                         0
-                                    )
-                                }
+                                )}
+                            
                                 analysisToggle={this.state.analysisToggle}
                             />
+                        
                         </div>
                     </div>
                 </div>
