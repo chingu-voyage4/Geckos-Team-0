@@ -101,15 +101,15 @@ class App extends Component {
 
     // format api results for react-select
     apiResult() {
-        let searchResult = [];
+        let apiResult = [];
         let len = this.state.autocomplete.length;
         for (var i = 0; i < len; i++) {
-            searchResult.push({
+            apiResult.push({
                 value: this.state.autocomplete[i],
                 label: this.state.autocomplete[i]
             });
         }
-        return searchResult;
+        return apiResult;
     }
     // fetch selected ingredient from searchBar
     ingredientSelection(item, num) {
@@ -255,7 +255,7 @@ class App extends Component {
                             onSearchTermChange={(term) =>
                                 this.ingredientSearch(term)
                             }
-                            searchResult={this.apiResult()}
+                            apiResult={this.apiResult()}
                             ingredientSelection={this.ingredientSelection}
                             addIngredient={this.addIngredient}
                             ingredients={this.state.ingredients}

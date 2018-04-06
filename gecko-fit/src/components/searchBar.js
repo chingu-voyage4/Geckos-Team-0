@@ -53,7 +53,7 @@ class SearchBar extends Component {
             value={this.state.selectedOption}
             onChange={this.handleOptionSelect}
             onInputChange={this.handleInputChange}
-            options={this.props.searchResult}
+            options={this.props.apiResult}
           />
           <input
             className="ingredient-container__quantity"
