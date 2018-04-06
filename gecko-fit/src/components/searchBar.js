@@ -16,6 +16,7 @@ class SearchBar extends Component {
   handleAddOption(event) {
     event.preventDefault();
     this.ingredientSelection(this.state.selectedOption, this.state.quantity);
+    this.setState({selectedOption: "" });
   }
   handleQuantity(event) {
     this.setState({ quantity: event.target.value });
