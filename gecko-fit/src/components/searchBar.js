@@ -8,6 +8,7 @@ class SearchBar extends Component {
     this.handleOptionSelect = this.handleOptionSelect.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
     this.handleQuantity = this.handleQuantity.bind(this);
+    this.handleClear = this.handleClear.bind(this);
     this.state = {
       selectedOption: "",
       quantity: 1
@@ -37,6 +38,9 @@ class SearchBar extends Component {
   ingredientSelection(data, num) {
     this.props.ingredientSelection(data, num);
   }
+  handleClear() {
+    this.setState({ selectedOption: "" });
+  }
 
   render() {
     return (
@@ -51,8 +55,9 @@ class SearchBar extends Component {
             className="ingredient-container__field"
             placeholder="Type in ingredient to get nutrition info"
             value={this.state.selectedOption}
-            onChange={this.handleOptionSelect}
-            onInputChange={this.handleInputChange}
+            onFocus={this.handleClear}
+            onChange={this.handleOptionSelect} // sets option state (not visible)
+            onInputChange={this.handleInputChange} //listener
             options={this.props.apiResult}
           />
           <input
