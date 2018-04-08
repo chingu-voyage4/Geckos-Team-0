@@ -28,7 +28,7 @@ class CalcBMI extends Component {
       <div>
         <Modal
           isOpen={this.props.bmiCalcToggle}
-          //onRequestClose={!this.props.bmiCalcToggle}
+          onRequestClose={this.props.showCalc}
           contentLabel="BMI Calculator"
           ariaHideApp={false}
           closeTimeoutMS={200}
