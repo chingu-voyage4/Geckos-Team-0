@@ -20,6 +20,7 @@ class App extends Component {
         this.ingredientSelection = this.ingredientSelection.bind(this);
         this.showAnalysis = this.showAnalysis.bind(this);
         this.showCalc = this.showCalc.bind(this);
+        this.closeHelp = this.closeHelp.bind(this);
         this.state = {
             autocomplete: '',
             apiData: [],
@@ -39,7 +40,8 @@ class App extends Component {
             analysisToggle: false,
             bmiCalcToggle: false,
             error: undefined,
-            cookie: false
+            cookie: false,
+            instructions: false
         };
     }
     componentWillMount() {
@@ -66,10 +68,20 @@ class App extends Component {
             createCookie('name','newVisitor',28);
             this.setState((prevState) => {
                 return {
-                    cookie: !prevState.cookie
+                    cookie: !prevState.cookie,
+                    instructions: true
                 }
             });
         }
+    }
+    // function that will close the instructions box when the user clicks it
+    closeHelp(){
+        console.log('User clicked the instructions box to close it');
+        this.setState((prevState) => {
+            return {
+                instructions: false
+            }
+        });
     }
     // add ingredient to ingredient list
     addIngredient(ingredient) {
@@ -281,9 +293,9 @@ class App extends Component {
                         <Menu 
                             showCalc={this.showCalc}  
                         />
-                        {this.state.cookie && (
-                            <div className="App__greeting">
-                                <p className="App__greeting-text">I see you are a first time visitor! To use, please enter an ingredient into the search bar and the number of ounces, then click Add!</p>
+                        {this.state.instructions && (
+                            <div className="App__greeting" onClick={this.closeHelp}>
+                                <p className="App__greeting-text">I see you are a first time visitor! To use this application, please enter an ingredient into the search bar and the number of ounces, then click Add! Just click this box to close the instructions!</p>
                             </div>
                         )}
                         <SearchBar
