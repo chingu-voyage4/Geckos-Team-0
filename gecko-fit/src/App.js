@@ -19,6 +19,7 @@ class App extends Component {
         this.ingredientSelection = this.ingredientSelection.bind(this);
         this.showAnalysis = this.showAnalysis.bind(this);
         this.showCalc = this.showCalc.bind(this);
+        this.closeHelp = this.closeHelp.bind(this);
         this.state = {
             autocomplete: '',
             apiData: [],
@@ -37,8 +38,49 @@ class App extends Component {
             fatPoly: [],
             analysisToggle: false,
             bmiCalcToggle: false,
-            error: undefined
+            error: undefined,
+            cookie: false,
+            instructions: false
         };
+    }
+    componentWillMount() {
+        //function to create a new cookie when user first vists site
+        function createCookie(name, value, days) {
+            let expires;
+            if(days) {
+                let date = new Date();
+                date.setTime(date.getTime()+(days*24*60*60*1000));
+                expires = '; expires=' + date.toGMTString();
+            }
+            else expires = '';
+            document.cookie = name + '=' + value + expires + '; path/';
+        }
+        // will check if the cookie already exists
+        if (document.cookie.split(';').filter((item) => {
+            return item.includes('newVisitor')
+        }).length) {
+            console.log('This a returning user.');
+
+        }else {
+            console.log('New visitor...creating cookie');
+            // createCookie needs name, the value of name, and the amount of days the cookie stays alive
+            createCookie('name','newVisitor',28);
+            this.setState((prevState) => {
+                return {
+                    cookie: !prevState.cookie,
+                    instructions: true
+                }
+            });
+        }
+    }
+    // function that will close the instructions box when the user clicks it
+    closeHelp(){
+        console.log('User clicked the instructions box to close it');
+        this.setState((prevState) => {
+            return {
+                instructions: false
+            }
+        });
     }
     // add ingredient to ingredient list
     addIngredient(ingredient) {
@@ -251,6 +293,11 @@ class App extends Component {
                         <Menu 
                             showCalc={this.showCalc}  
                         />
+                        {this.state.instructions && (
+                            <div className="App__greeting" onClick={this.closeHelp}>
+                                <p className="App__greeting-text">I see you are a first time visitor! To use this application, please enter an ingredient into the search bar and the number of ounces, then click Add! Just click this box to close the instructions!</p>
+                            </div>
+                        )}
                         <SearchBar
                             onSearchTermChange={(term) =>
                                 this.ingredientSearch(term)
