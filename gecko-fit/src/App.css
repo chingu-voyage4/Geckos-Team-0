@@ -28,34 +28,39 @@ body {
     grid-column-end: column-4;
     grid-row-start: row-2;
     grid-row-end: row-3;
-    border: 4px solid #6c648b; 
+    border: 4px solid #6c648b;
     background: #f9f3f2;
     position: relative;
     height: 80px;
     width: 80%;
     top: 50px;
-    animation: slidein .5s ease-in-out 1s infinite alternate;
+    animation: slidein 0.5s ease-in-out 1s infinite alternate;
 }
 @keyframes slidein {
-    from{transform: translateY(.1em); }
-    to {transform: translateY(.3em); }
+    from {
+        transform: translateY(0.1em);
+    }
+    to {
+        transform: translateY(0.3em);
+    }
 }
 .App__greeting-text {
     padding: 10px;
     font-size: 1.3em;
 }
-.App__greeting:after, .App__greeting:before {
+.App__greeting:after,
+.App__greeting:before {
     top: 100%;
     left: 20%;
     border: solid transparent;
-    content: "";
+    content: '';
     height: 0;
     width: 0;
     position: absolute;
     pointer-events: none;
 }
 .App__greeting:after {
-    border-color: rgba(136, 183,213,0);
+    border-color: rgba(136, 183, 213, 0);
     border-top-color: #f9f3f2;
     border-width: 10px;
     margin-left: -10px;
@@ -74,13 +79,23 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 4;
 }
+
 .navigation__button {
+    position: relative;
     border: 0;
-    padding: 1rem;
+    padding: 1.5rem;
     display: inline-block;
     background: none;
     z-index: 4;
+}
+
+.navigation__button .is-active {
+    position: relative;
+    z-index: 4;
+    display: block;
+    width: 100%;
 }
 
 .navigation__button:focus {
@@ -128,6 +143,7 @@ body {
     height: 20px;
     vertical-align: middle;
     fill: none;
+    z-index: 4;
 }
 
 .navigation__wrapper .navigation__line {
@@ -142,6 +158,7 @@ body {
     z-index: 4;
     outline: none;
 }
+
 /* line 1 */
 .navigation__wrapper .navigation__line--1 {
     top: 0;
@@ -456,7 +473,7 @@ body {
         position: relative;
     }
     .App__greeting {
-        height: 120px;   
+        height: 120px;
         top: 0;
     }
 }
@@ -472,7 +489,8 @@ body {
         width: 100%;
         top: 10px;
     }
-    .App__greeting:after, .App__greeting:before {
+    .App__greeting:after,
+    .App__greeting:before {
         left: 30%;
     }
 
