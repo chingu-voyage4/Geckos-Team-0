@@ -417,11 +417,25 @@ body {
         width: 50%;
         position: relative;
     }
+    .App__greeting {
+        height: 120px;   
+        top: 0;
+    }
 }
 
 @media screen and (max-width: 500px) {
     .ingredient-item__delete-button {
         margin-left: 40%;
+    }
+
+    .App__greeting {
+        grid-column-start: column-1;
+        height: 120px;
+        width: 100%;
+        top: 10px;
+    }
+    .App__greeting:after, .App__greeting:before {
+        left: 30%;
     }
 
     /* .ingredient-container__form {
