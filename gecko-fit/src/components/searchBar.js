@@ -17,7 +17,10 @@ class SearchBar extends Component {
   // return selected ingredient & quantity to App  /  reset SearchBar state
   handleAddOption(event) {
     event.preventDefault();
-    this.props.ingredientSelection(this.state.selectedOption, this.state.quantity);
+    this.props.ingredientSelection(
+      this.state.selectedOption,
+      this.state.quantity
+    );
     this.setState({ selectedOption: "", quantity: 1 });
   }
   // set state for user quantity entered
@@ -30,24 +33,26 @@ class SearchBar extends Component {
   handleInputChange(term) {
     this.setState({ term });
     this.props.onSearchTermChange(term);
+
+    if (term !== "") {
+      this.setState({ selectedOption: "" });
+    }
     return term;
   }
   // set state for user selected ingredient
   handleOptionSelect(selectedOption) {
     this.setState({ selectedOption });
   }
-  // return selected ingredient to App
-  //ingredientSelection(data, num) {
-  //  this.props.ingredientSelection(data, num);
-  //}
-  // clears searchbar on focus for new search data
   handleClear() {
     this.setState({ selectedOption: "" });
   }
-  
+
   componentDidUpdate() {
-    console.log("Selected Option: " + JSON.stringify(this.state.selectedOption));
-};
+    console.log(
+      "Selected Option: " + JSON.stringify(this.state.selectedOption)
+    );
+    console.log("term: " + JSON.stringify(this.state.term));
+  }
 
   render() {
     return (
