@@ -28,36 +28,43 @@ class CalcBMI extends Component {
       <div>
         <Modal
           isOpen={this.props.bmiCalcToggle}
-          //onRequestClose={!this.props.bmiCalcToggle}
+          onRequestClose={this.props.showCalc}
           contentLabel="BMI Calculator"
           ariaHideApp={false}
           closeTimeoutMS={200}
-          className="modal"
+          className='calc__modal'
         >
           <div>
             <h1>BMI Calculator!</h1>
           </div>
-          <div>
+          <div className='calc-container__fields'>
             <form>
-              <label>Feet:</label>
+            <div className='calc-wrapper__inputs'>
+              <label className="calc-input__label">Feet:</label>
               <input
+                className="calc-input__field"
                 type="number"
                 name="feet"
                 value={this.state.feet}
                 onChange={e => this.handleFeetChange(e.target.value)}
                 onFocus={this.handleFocus}
               />
-              <label>Inches:</label>
+              </div>
+              <div className='calc-wrapper__inputs'>
+              <label className="calc-input__label">Inches:</label>
               <input
+                className="calc-input__field"
                 type="number"
                 name="inches"
                 value={this.state.inches}
                 onChange={e => this.handleInchesChange(e.target.value)}
                 onFocus={this.handleFocus}
               />
-              <div>
-                <label>Weight:</label>
+              </div>
+              <div className='calc-wrapper__inputs'>
+                <label className="calc-input__label">Weight:</label>
                 <input
+                  className="calc-input__field"
                   type="number"
                   name="weight"
                   value={this.state.weight}
@@ -67,15 +74,19 @@ class CalcBMI extends Component {
               </div>
             </form>
           </div>
+          <div className='calc-container__display'>
+          <h3>Your BMI is: {this.state.bmi}</h3>
+          </div>
+          <div className="calc-container__button">
           <input
+            
             type="button"
             name="calcBMI"
-            className="modal_button"
             value="Show BMI"
             onClick={this.calculateBMI}
           />
-          <h3>Your BMI is: {this.state.bmi}</h3>
-        </Modal>
+          </div>
+          </Modal>
       </div>
     );
   }

@@ -272,7 +272,7 @@ class App extends Component {
         this.setState({ analysisToggle: !this.state.analysisToggle });
     }
 
-    showCalc() {
+    showCalc = () => {
         this.setState({ bmiCalcToggle: !this.state.bmiCalcToggle });
     }
 
@@ -287,6 +287,7 @@ class App extends Component {
                     />
                     <CalcBMI 
                       bmiCalcToggle={this.state.bmiCalcToggle}
+                      showCalc={this.showCalc}
                     />
                     <div className="ingredient-wrapper">
                         <Menu 
