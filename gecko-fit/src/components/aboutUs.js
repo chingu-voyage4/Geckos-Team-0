@@ -16,7 +16,7 @@ class AboutUs extends Component {
           <div>
             <h4>Shantia Grimes-Farmer</h4>
             <h5>Team Lead/Coder</h5>
-            <p>Animation student that decided code was more fun. Self-taught web developer with a desire to keep learning and work in the industry. 
+            <p>Animation student that decided code was more fun. I'm a self-taught web developer with a desire to keep learning and work in the industry. 
             <a href="https://github.com/SnGrimes" className='about-us__link'> Shantia's github</a></p>
         </div>
         <div>
@@ -28,7 +28,7 @@ class AboutUs extends Component {
         <div>
             <h4>Abel Acosta</h4>
             <h5>Coder</h5>
-            <p></p>
+            <p>Teacher turned web developer. I make web applications for fun and with an emphasis on user experience.</p>
             <a href="https://github.com/abecel22" className='about-us__link'>Abel's github</a>
           </div>
         </Modal>
