@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
 import './App.css';
 import 'react-select/dist/react-select.css';
 import Header from './components/header';
@@ -9,6 +8,7 @@ import Ingredient from './components/ingredient';
 import Nutrition from './components/nutrition';
 import Footer from './components/footer';
 import OptionModal from './components/optionModal';
+import CalcBMI from "./components/calcBMI";
 import { API_KEY, API_ID } from './apiKey';
 
 class App extends Component {
@@ -18,6 +18,8 @@ class App extends Component {
         this.removeIngredient = this.removeIngredient.bind(this);
         this.ingredientSelection = this.ingredientSelection.bind(this);
         this.showAnalysis = this.showAnalysis.bind(this);
+        this.showCalc = this.showCalc.bind(this);
+        this.closeHelp = this.closeHelp.bind(this);
         this.state = {
             autocomplete: '',
             apiData: [],
@@ -35,8 +37,50 @@ class App extends Component {
             fatMono: [],
             fatPoly: [],
             analysisToggle: false,
-            error: undefined
+            bmiCalcToggle: false,
+            error: undefined,
+            cookie: false,
+            instructions: false
         };
+    }
+    componentWillMount() {
+        //function to create a new cookie when user first vists site
+        function createCookie(name, value, days) {
+            let expires;
+            if(days) {
+                let date = new Date();
+                date.setTime(date.getTime()+(days*24*60*60*1000));
+                expires = '; expires=' + date.toGMTString();
+            }
+            else expires = '';
+            document.cookie = name + '=' + value + expires + '; path/';
+        }
+        // will check if the cookie already exists
+        if (document.cookie.split(';').filter((item) => {
+            return item.includes('newVisitor')
+        }).length) {
+            console.log('This a returning user.');
+
+        }else {
+            console.log('New visitor...creating cookie');
+            // createCookie needs name, the value of name, and the amount of days the cookie stays alive
+            createCookie('name','newVisitor',28);
+            this.setState((prevState) => {
+                return {
+                    cookie: !prevState.cookie,
+                    instructions: true
+                }
+            });
+        }
+    }
+    // function that will close the instructions box when the user clicks it
+    closeHelp(){
+        console.log('User clicked the instructions box to close it');
+        this.setState((prevState) => {
+            return {
+                instructions: false
+            }
+        });
     }
     // add ingredient to ingredient list
     addIngredient(ingredient) {
@@ -53,9 +97,11 @@ class App extends Component {
     // remove ingredient from ingredient list
     removeIngredient(ingredient) {
         const index = this.state.ingredients.indexOf(ingredient);
-        console.log(`Index of ingredient: ${index}`);
         let temp = this.state.quantity;
         temp.splice(index, 1);
+        if (this.state.ingredients.length === 1) {
+            this.showAnalysis();
+        }
         //remove all nutrients
         this.state.apiData.splice(index, 1);
         this.state.calories.splice(index, 1);
@@ -77,7 +123,7 @@ class App extends Component {
                 quantity: temp
             };
         });
-        console.log(`From removeIngredient - removed ${ingredient}`);
+        
     }
 
     ingredientSearch(term) {
@@ -96,15 +142,15 @@ class App extends Component {
 
     // format api results for react-select
     apiResult() {
-        let searchResult = [];
+        let apiResult = [];
         let len = this.state.autocomplete.length;
         for (var i = 0; i < len; i++) {
-            searchResult.push({
+            apiResult.push({
                 value: this.state.autocomplete[i],
                 label: this.state.autocomplete[i]
             });
         }
-        return searchResult;
+        return apiResult;
     }
     // fetch selected ingredient from searchBar
     ingredientSelection(item, num) {
@@ -226,6 +272,10 @@ class App extends Component {
         this.setState({ analysisToggle: !this.state.analysisToggle });
     }
 
+    showCalc = () => {
+        this.setState({ bmiCalcToggle: !this.state.bmiCalcToggle });
+    }
+
     render() {
         return (
             <div className="App">
@@ -235,13 +285,24 @@ class App extends Component {
                         error={this.state.error}
                         handleClearErrors={this.handleClearErrors}
                     />
+                    <CalcBMI 
+                      bmiCalcToggle={this.state.bmiCalcToggle}
+                      showCalc={this.showCalc}
+                    />
                     <div className="ingredient-wrapper">
-                        <Menu />
+                        <Menu 
+                            showCalc={this.showCalc}  
+                        />
+                        {this.state.instructions && (
+                            <div className="App__greeting" onClick={this.closeHelp}>
+                                <p className="App__greeting-text">I see you are a first time visitor! To use this application, please enter an ingredient into the search bar and the number of ounces, then click Add! Just click this box to close the instructions!</p>
+                            </div>
+                        )}
                         <SearchBar
                             onSearchTermChange={(term) =>
                                 this.ingredientSearch(term)
                             }
-                            searchResult={this.apiResult()}
+                            apiResult={this.apiResult()}
                             ingredientSelection={this.ingredientSelection}
                             addIngredient={this.addIngredient}
                             ingredients={this.state.ingredients}
@@ -250,7 +311,7 @@ class App extends Component {
                             <table className="ingredient-item">
                                 <tbody>
                                     {this.state.ingredients.length > 0 && (
-                                        <tr>
+                                        <tr className="ingredient-item__head-row">
                                             <th>Ingredient</th>
                                             <th>Ounces</th>
                                             <th>Calories</th>
@@ -348,10 +409,11 @@ class App extends Component {
                                     this.state.fatPoly.reduce(
                                         (a, b) => a + b,
                                         0
-                                    )
-                                }
+                                )}
+                            
                                 analysisToggle={this.state.analysisToggle}
                             />
+                        
                         </div>
                     </div>
                 </div>
