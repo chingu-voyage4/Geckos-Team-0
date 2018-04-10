@@ -9,7 +9,6 @@ body {
 }
 
 .App__header {
-    /*background: #222 url('img/Vegetables_Banner_01.png') no-repeat center;*/
     height: 100px;
     padding: 20px;
     color: white;
@@ -343,7 +342,7 @@ body {
     grid-row-start: app-row-2;
     grid-row-end: app-row-2;
     display: grid;
-    grid-template-columns: [footer-column-1] 50% [footer-column-2] 50%;
+    grid-template-columns: [footer-column-1] 30% [footer-column-2] 30% [footer-column-3] 35%;
     grid-template-rows: [footer-row-1] 50%;
 }
 
@@ -355,6 +354,13 @@ body {
 .footer__github-link {
     grid-column: footer-column-2 / footer-column-2;
     grid-row: footer-row-1 / footer-row-1;
+}
+
+
+.footer__edamam-link {
+    grid-column: footer-column-3 / footer-column-3;
+    grid-row: footer-row-1 / footer-row-1;
+
 }
 
 /* This section is for React-Modals */
@@ -536,9 +542,38 @@ body {
         left: 30%;
     }
 
-    /* .ingredient-container__form {
+    .ingredient-wrapper {
+        grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 150px [row-5] auto [row-6]30px [row-7] 150px [row-8] 50px;
+    }
+    .ingredient-container {
+        grid-column-start: column-2;
+        grid-column-end: column-5;
+        grid-row-end: row-6;
+        height: 8rem;
+        grid-template-rows: [search-row-1] 10px [search-row-2] auto [search-row-3] 10px [search-row-4];
     }
 
-    .Select {
-    } */
+    .ingredient-container__form {
+        grid-template-columns: [search-column-1] 10px [search-column-2] 50px [search-column-3] 50px [search-column-4] auto [search-column-5]50px [search-column-6] 50px [search-column-7] 10px;
+        grid-template-rows: [search-row-1] 10px [search-row-2] auto [search-row-3] 40px [search-row-4] 50px;
+    }
+
+    .ingredient-container__field {
+        grid-column-start: search-column-1;
+        grid-column-end: search-column-8;
+    }
+
+    .ingredient-container__submit {
+        grid-column-start: search-column-5;
+        grid-column-end: span 2;
+        width: 100%;
+    }
+    .ingredient-container__quantity {
+        grid-column-start: search-column-3;
+    }
+    .ingredient-container__quantity, 
+    .ingredient-container__submit {
+        grid-row-start: search-row-4;
+        grid-row-end: search-row-5;
+    }
 }

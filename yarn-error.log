@@ -1,17 +1,17 @@
 Arguments: 
-  /home/Dell5480/.nvm/versions/node/v9.8.0/bin/node /usr/bin/yarn start
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js test
 
 PATH: 
-  /home/Dell5480/.nvm/versions/node/v9.8.0/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/Dell5480/.local/bin:/home/Dell5480/bin
+  C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files (x86)\Skype\Phone\;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Git\cmd;C:\Users\Nikki\AppData\Local\Programs\Python\Python35\Scripts\;C:\Users\Nikki\AppData\Local\Programs\Python\Python35\;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\Nikki\AppData\Roaming\npm;C:\Users\Nikki\AppData\Local\Yarn\bin
 
 Yarn version: 
-  1.5.0
+  1.5.1
 
 Node version: 
-  9.8.0
+  6.11.0
 
 Platform: 
-  linux x64
+  win32 x64
 
 npm manifest: 
   No manifest
@@ -23,10 +23,10 @@ Lockfile:
   No lockfile
 
 Trace: 
-  Error: Couldn't find a package.json file in "/home/Dell5480/Programming/Group/Geckos-Team-0"
-      at new MessageError (/usr/lib/node_modules/yarn/lib/cli.js:186:110)
-      at /usr/lib/node_modules/yarn/lib/cli.js:40048:15
-      at Generator.next (<anonymous>)
-      at step (/usr/lib/node_modules/yarn/lib/cli.js:98:30)
-      at /usr/lib/node_modules/yarn/lib/cli.js:109:13
-      at <anonymous>
+  Error: Couldn't find a package.json file in "H:\\My Documents\\Web Developer Portfolio\\Geckos-Team-0"
+      at MessageError.Error (native)
+      at new MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:40048:15
+      at next (native)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:98:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:109:13
