@@ -412,7 +412,7 @@ body {
     background: #6c648b;
     color: white;
     width: 20rem;
-    height: 20rem;;
+    height: 12rem;;
     padding: 0 2rem 2rem 2rem;
     text-align: center;
     /* position: relative; */
@@ -421,6 +421,7 @@ body {
 .about-us__modal {
     line-height: 1em;
     text-align: justify;
+    height: 23rem;
 }
 
 .about-us__link {
@@ -464,6 +465,13 @@ body {
 }
 
 /* Media Queries */
+@media screen and (min-width: 1440px) {
+    .ingredient-container {
+        width: 80%;
+        justify-self: center;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .ingredient-item,
     .ingredient-item tbody,
@@ -549,6 +557,10 @@ body {
     .App__greeting:after,
     .App__greeting:before {
         left: 30%;
+    }
+
+    .calc-container__display {
+        width: 100px;
     }
 
     .ingredient-wrapper {

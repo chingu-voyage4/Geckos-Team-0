@@ -277,10 +277,16 @@ class App extends Component {
 
     showCalc = () => {
         this.setState({ bmiCalcToggle: !this.state.bmiCalcToggle });
+        if(this.state.aboutUsToggle === true) {
+            this.setState({ aboutUsToggle: false });
+        }
     }
 
     showAboutUs() {
         this.setState({ aboutUsToggle: !this.state.aboutUsToggle });
+        if(this.state.bmiCalcToggle === true) {
+            this.setState({ bmiCalcToggle: false });
+        }
     }
 
     render() {
