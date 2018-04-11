@@ -84,9 +84,9 @@ body {
 .navigation__button {
     position: relative;
     border: 0;
-    padding: 1.5rem;
+    padding: 1.3rem;
     display: inline-block;
-    background: none;
+    background: rgba(249, 243, 242, 0.35);
     z-index: 4;
 }
 
@@ -102,7 +102,7 @@ body {
 }
 
 .navigation__expansion {
-    background-color: rgba(249, 243, 242, 0.9);
+    background-color: rgba(249, 243, 242, 0.99);
     box-shadow: 3px 3px 8px #7c7d7d;
     position: fixed;
     top: 0;
@@ -356,11 +356,9 @@ body {
     grid-row: footer-row-1 / footer-row-1;
 }
 
-
 .footer__edamam-link {
     grid-column: footer-column-3 / footer-column-3;
     grid-row: footer-row-1 / footer-row-1;
-
 }
 
 /* This section is for React-Modals */
@@ -416,7 +414,7 @@ body {
     background: #6c648b;
     color: white;
     width: 20rem;
-    height: 12rem;;
+    height: 12rem;
     padding: 0 2rem 2rem 2rem;
     text-align: center;
     /* position: relative; */
@@ -435,9 +433,9 @@ body {
 }
 
 .calc-input__label {
-    float:left;
+    float: left;
     width: 20px;
-    margin-right:15px;
+    margin-right: 15px;
 }
 .calc-input__field {
     width: 40px;
@@ -571,7 +569,7 @@ body {
     .ingredient-container__quantity {
         grid-column-start: search-column-3;
     }
-    .ingredient-container__quantity, 
+    .ingredient-container__quantity,
     .ingredient-container__submit {
         grid-row-start: search-row-4;
         grid-row-end: search-row-5;
