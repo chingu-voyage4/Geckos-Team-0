@@ -525,6 +525,11 @@ body {
 }
 
 @media screen and (max-width: 500px) {
+    .navigation__expansion {
+        height: auto;
+        width: 100%;
+    }
+
     .ingredient-item__delete-button {
         margin-left: 40%;
     }
