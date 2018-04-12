@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import onClickOutside from 'react-onclickoutside';
 
 class Menu extends Component {
     constructor(props) {
@@ -18,6 +19,19 @@ class Menu extends Component {
             };
         });
     }
+
+    handleClickOutside = (evt) => {
+        if (this.state.menuOpen === true) {
+            const hamButton = document.querySelector('.navigation__button');
+            hamButton.classList.toggle('is-active');
+            this.setState((prevState) => {
+                return {
+                    menuOpen: !prevState.menuOpen
+                };
+            });
+        }
+    };
+
     render() {
         const divStyle = {
             width: '200px',
@@ -60,4 +74,4 @@ class Menu extends Component {
     }
 }
 
-export default Menu;
+export default onClickOutside(Menu);
