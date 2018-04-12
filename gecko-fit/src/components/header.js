@@ -28,8 +28,7 @@ class Header extends Component {
         backgroundColor: 'black',
         backgroundImage: 'url("' + this.state.imgUrl + '")',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: '100% auto'
+        backgroundPosition: 'center'
       };
       return (
         <header className="App__header" style={header}>
