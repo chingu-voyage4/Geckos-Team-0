@@ -61,10 +61,9 @@ class Menu extends Component {
                                 </button>
                             </li>
                             <li>
-                                <a href="">About Us</a>
-                            </li>
-                            <li>
-                                <a href="">About App</a>
+                                <button 
+                                    className="navigation__expansion__aboutus-button" 
+                                    onClick={this.props.showAboutUs}>About Us</button>
                             </li>
                         </ul>
                     )}

@@ -8,6 +8,7 @@ import Ingredient from './components/ingredient';
 import Nutrition from './components/nutrition';
 import Footer from './components/footer';
 import OptionModal from './components/optionModal';
+import AboutUs from './components/aboutUs';
 import CalcBMI from "./components/calcBMI";
 import { API_KEY, API_ID } from './apiKey';
 
@@ -20,6 +21,7 @@ class App extends Component {
         this.showAnalysis = this.showAnalysis.bind(this);
         this.showCalc = this.showCalc.bind(this);
         this.closeHelp = this.closeHelp.bind(this);
+        this.showAboutUs = this.showAboutUs.bind(this);
         this.state = {
             autocomplete: '',
             apiData: [],
@@ -38,6 +40,7 @@ class App extends Component {
             fatPoly: [],
             analysisToggle: false,
             bmiCalcToggle: false,
+            aboutUsToggle: false,
             error: undefined,
             cookie: false,
             instructions: false
@@ -274,6 +277,16 @@ class App extends Component {
 
     showCalc = () => {
         this.setState({ bmiCalcToggle: !this.state.bmiCalcToggle });
+        if(this.state.aboutUsToggle === true) {
+            this.setState({ aboutUsToggle: false });
+        }
+    }
+
+    showAboutUs() {
+        this.setState({ aboutUsToggle: !this.state.aboutUsToggle });
+        if(this.state.bmiCalcToggle === true) {
+            this.setState({ bmiCalcToggle: false });
+        }
     }
 
     render() {
@@ -289,9 +302,14 @@ class App extends Component {
                       bmiCalcToggle={this.state.bmiCalcToggle}
                       showCalc={this.showCalc}
                     />
+                    <AboutUs
+                        aboutUsToggle={this.state.aboutUsToggle}
+                        showAboutUs={this.showAboutUs}
+                    />
                     <div className="ingredient-wrapper">
                         <Menu 
-                            showCalc={this.showCalc}  
+                            showCalc={this.showCalc}
+                            showAboutUs={this.showAboutUs}  
                         />
                         {this.state.instructions && (
                             <div className="App__greeting" onClick={this.closeHelp}>
