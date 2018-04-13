@@ -102,9 +102,6 @@ class App extends Component {
         const index = this.state.ingredients.indexOf(ingredient);
         let temp = this.state.quantity;
         temp.splice(index, 1);
-        if (this.state.ingredients.length === 1) {
-            this.showAnalysis();
-        }
         //remove all nutrients
         this.state.apiData.splice(index, 1);
         this.state.calories.splice(index, 1);
@@ -118,14 +115,27 @@ class App extends Component {
         this.state.fatSat.splice(index, 1);
         this.state.fatMono.splice(index, 1);
         this.state.fatPoly.splice(index, 1);
-        this.setState((prevState) => {
-            return {
-                ingredients: prevState.ingredients.filter(
+        if (this.state.ingredients.length === 1) {
+            this.setState((prevState) => {
+                return {
+                    ingredients: prevState.ingredients.filter(
                     (element) => element !== ingredient
                 ),
-                quantity: temp
-            };
-        });
+                quantity: temp,
+                analysisToggle: false
+                }
+            });
+        } else {
+            this.setState((prevState) => {
+                return {
+                    ingredients: prevState.ingredients.filter(
+                        (element) => element !== ingredient
+                    ),
+                    quantity: temp,
+
+                };
+            });
+        }
         
     }
 
