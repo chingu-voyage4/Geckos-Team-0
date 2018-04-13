@@ -313,7 +313,7 @@ body {
 .ingredient-container__label {
     grid-column-start: column-3;
     grid-column-end: column-4;
-    grid-row-start: row-7;
+    grid-row-start: row-9;
     grid-row-end: span 3;
     margin: 0 auto;
 }
