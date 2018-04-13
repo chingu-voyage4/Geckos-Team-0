@@ -45,7 +45,7 @@ class SearchBar extends Component {
   // save user input to state when input blurred
   trackInput(term) {
     if (term !== "") {
-      this.setState(prevState => ({ userInput: term }));
+      this.setState(prevState => ({ userInput: term.trim() }));
     }
   }
 
