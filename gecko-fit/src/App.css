@@ -16,6 +16,7 @@ body {
     grid-column-end: column-6;
     grid-row-start: row-1;
     grid-row-end: row-2;
+    background-size: 100%;
 }
 
 .App__title {
@@ -193,7 +194,7 @@ body {
     grid-row-start: row-3;
     display: grid;
     grid-template-columns: [column-1] 40px [column-2] 50px [column-3] auto [column-4] 50px [column-5] 40px [column-6];
-    grid-template-rows: [row-1] 30% [row-2] 150px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] 150px [row-8] 50px;
+    grid-template-rows: [row-1] 30% [row-2] 150px [row-3] auto [row-4] 100px [row-5] auto [row-6]30px [row-7] auto [row-8] 50px [row-9] 50px;
 }
 
 .ingredient-container {
@@ -271,14 +272,16 @@ body {
 
 .ingredient-container__list {
     grid-column: column-3 / column-4;
-    grid-row-start: row-5;
+    grid-row-start: row-7;
+    width: 100%;
+    justify-self: center;
 }
 
 .ingredient-container__analyze {
     grid-column-start: column-3;
     grid-column-end: column-4;
-    grid-row-start: row-6;
-    grid-row-end: row-7;
+    grid-row-start: row-8;
+    grid-row-end: row-9;
 }
 
 .ingredient-container__analyze__button {
@@ -361,6 +364,7 @@ body {
 .footer__edamam-link {
     grid-column: footer-column-3 / footer-column-3;
     grid-row: footer-row-1 / footer-row-1;
+    justify-self: end;
 }
 
 /* This section is for React-Modals */
@@ -474,6 +478,9 @@ body {
     .ingredient-container {
         width: 60%;
     }
+    .ingredient-container__list {
+        width: 60%;
+    }
     .App__greeting,
     .ingredient-container {
         justify-self: center;
@@ -585,13 +592,15 @@ body {
     }
 
     .ingredient-wrapper {
-        grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 150px [row-5] auto [row-6]30px [row-7] 150px [row-8] 50px;
+        grid-template-columns: [column-1] 20px [column-2] 0px [column-3] auto [column-4] 50px [column-5] 20px [column-6];
+        grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 150px [row-5] auto [row-6]30px [row-7] auto [row-8] 50px [row-9] 50px;;
     }
     .ingredient-container {
         grid-column-start: column-2;
         grid-column-end: column-5;
         grid-row-end: row-6;
         height: 8rem;
+        grid-template-columns: [search-column-1] 10px [search-column-2] auto [search-column-3] 60px [search-column-4] 10px;
         grid-template-rows: [search-row-1] 10px [search-row-2] auto [search-row-3] 10px [search-row-4];
     }
 
@@ -617,5 +626,11 @@ body {
     .ingredient-container__submit {
         grid-row-start: search-row-4;
         grid-row-end: search-row-5;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .ingredient-container {
+        grid-template-columns: [search-column-1] 10px [search-column-2] auto [search-column-3] 20px [search-column-4] 10px;
     }
 }
