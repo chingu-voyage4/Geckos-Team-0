@@ -9,7 +9,7 @@ import Nutrition from './components/nutrition';
 import Footer from './components/footer';
 import OptionModal from './components/optionModal';
 import AboutUs from './components/aboutUs';
-import CalcBMI from "./components/calcBMI";
+import CalcBMI from './components/calcBMI';
 import { API_KEY, API_ID } from './apiKey';
 
 class App extends Component {
@@ -50,45 +50,46 @@ class App extends Component {
         //function to create a new cookie when user first vists site
         function createCookie(name, value, days) {
             let expires;
-            if(days) {
+            if (days) {
                 let date = new Date();
-                date.setTime(date.getTime()+(days*24*60*60*1000));
+                date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
                 expires = '; expires=' + date.toGMTString();
-            }
-            else expires = '';
+            } else expires = '';
             document.cookie = name + '=' + value + expires + '; path/';
         }
         // will check if the cookie already exists
-        if (document.cookie.split(';').filter((item) => {
-            return item.includes('newVisitor')
-        }).length) {
+        if (
+            document.cookie.split(';').filter((item) => {
+                return item.includes('newVisitor');
+            }).length
+        ) {
             console.log('This a returning user.');
-
-        }else {
+        } else {
             console.log('New visitor...creating cookie');
             // createCookie needs name, the value of name, and the amount of days the cookie stays alive
-            createCookie('name','newVisitor',28);
+            createCookie('name', 'newVisitor', 28);
             this.setState((prevState) => {
                 return {
                     cookie: !prevState.cookie,
                     instructions: true
-                }
+                };
             });
         }
     }
     // function that will close the instructions box when the user clicks it
-    closeHelp(){
+    closeHelp() {
         console.log('User clicked the instructions box to close it');
         this.setState((prevState) => {
             return {
                 instructions: false
-            }
+            };
         });
     }
     // add ingredient to ingredient list
     addIngredient(ingredient) {
-        if (!ingredient || this.state.ingredients.indexOf(ingredient) > -1) {
-            this.setState({ error: true });
+        ingredient = ingredient.toLowerCase().trim();
+        if (this.state.ingredients.indexOf(ingredient) > -1) {
+            this.setState({ error: 'This ingredient is already on the list' });
         } else {
             this.setState((prevState) => {
                 return {
@@ -119,11 +120,11 @@ class App extends Component {
             this.setState((prevState) => {
                 return {
                     ingredients: prevState.ingredients.filter(
-                    (element) => element !== ingredient
-                ),
-                quantity: temp,
-                analysisToggle: false
-                }
+                        (element) => element !== ingredient
+                    ),
+                    quantity: temp,
+                    analysisToggle: false
+                };
             });
         } else {
             this.setState((prevState) => {
@@ -131,12 +132,10 @@ class App extends Component {
                     ingredients: prevState.ingredients.filter(
                         (element) => element !== ingredient
                     ),
-                    quantity: temp,
-
+                    quantity: temp
                 };
             });
         }
-        
     }
 
     ingredientSearch(term) {
@@ -168,9 +167,7 @@ class App extends Component {
     // fetch selected ingredient from searchBar
     ingredientSelection(item, num) {
         if (item) {
-            console.log('Selected ingredient:' + item.label);
-            console.log('Selected quantity: ' + num);
-            const ingredientName = item.label;
+            const ingredientName = item.label.toLowerCase().trim();
             if (this.state.ingredients.indexOf(ingredientName) < 0) {
                 const request = async () => {
                     const response = await fetch(
@@ -287,14 +284,14 @@ class App extends Component {
 
     showCalc = () => {
         this.setState({ bmiCalcToggle: !this.state.bmiCalcToggle });
-        if(this.state.aboutUsToggle === true) {
+        if (this.state.aboutUsToggle === true) {
             this.setState({ aboutUsToggle: false });
         }
-    }
+    };
 
     showAboutUs() {
         this.setState({ aboutUsToggle: !this.state.aboutUsToggle });
-        if(this.state.bmiCalcToggle === true) {
+        if (this.state.bmiCalcToggle === true) {
             this.setState({ bmiCalcToggle: false });
         }
     }
@@ -308,22 +305,31 @@ class App extends Component {
                         error={this.state.error}
                         handleClearErrors={this.handleClearErrors}
                     />
-                    <CalcBMI 
-                      bmiCalcToggle={this.state.bmiCalcToggle}
-                      showCalc={this.showCalc}
+                    <CalcBMI
+                        bmiCalcToggle={this.state.bmiCalcToggle}
+                        showCalc={this.showCalc}
                     />
                     <AboutUs
                         aboutUsToggle={this.state.aboutUsToggle}
                         showAboutUs={this.showAboutUs}
                     />
                     <div className="ingredient-wrapper">
-                        <Menu 
+                        <Menu
                             showCalc={this.showCalc}
-                            showAboutUs={this.showAboutUs}  
+                            showAboutUs={this.showAboutUs}
                         />
                         {this.state.instructions && (
-                            <div className="App__greeting" onClick={this.closeHelp}>
-                                <p className="App__greeting-text">I see you are a first time visitor! To use this application, please enter an ingredient into the search bar and the number of ounces, then click Add! Just click this box to close the instructions!</p>
+                            <div
+                                className="App__greeting"
+                                onClick={this.closeHelp}
+                            >
+                                <p className="App__greeting-text">
+                                    I see you are a first time visitor! To use
+                                    this application, please enter an ingredient
+                                    into the search bar and the number of
+                                    ounces, then click Add! Just click this box
+                                    to close the instructions!
+                                </p>
                             </div>
                         )}
                         <SearchBar
@@ -437,11 +443,10 @@ class App extends Component {
                                     this.state.fatPoly.reduce(
                                         (a, b) => a + b,
                                         0
-                                )}
-                            
+                                    )
+                                }
                                 analysisToggle={this.state.analysisToggle}
                             />
-                        
                         </div>
                     </div>
                 </div>
