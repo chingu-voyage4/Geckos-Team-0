@@ -89,6 +89,7 @@ body {
     display: inline-block;
     background: rgba(249, 243, 242, 0.35);
     z-index: 4;
+    cursor: pointer;
 }
 
 .navigation__button .is-active {
