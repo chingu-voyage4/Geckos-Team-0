@@ -18,10 +18,14 @@ class SearchBar extends Component {
   }
   // return selected ingredient & quantity to App
   handleAddOption(event) {
+    let passedQuantity = this.state.quantity;
     event.preventDefault();
+    if (passedQuantity === '') {
+      passedQuantity = 1;
+    }
     this.props.ingredientSelection(
       this.state.selectedOption,
-      this.state.quantity
+      passedQuantity
     );
     this.setState({ selectedOption: "", quantity: 1, userInput: "" });
   }
@@ -42,7 +46,7 @@ class SearchBar extends Component {
     this.setState({ selectedOption: selectedOption, userInput: "" });
   }
 
-  // save user input to state when input blurred
+  // save user input to state when select box blurred
   trackInput(term) {
     if (term !== "") {
       this.setState(prevState => ({ userInput: term.trim() }));
