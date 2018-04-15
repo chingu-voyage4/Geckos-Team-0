@@ -434,7 +434,7 @@ body {
 }
 
 .about-us__link {
-    color: #FBA100;
+    color: #fba100;
     text-decoration: none;
 }
 .about-us__link:hover {
@@ -503,6 +503,10 @@ body {
         display: block;
     }
 
+    .ingredient-container__list {
+        margin-right: 5%;
+    }
+
     .ingredient-item__head-row {
         position: absolute;
         left: -9999px;
@@ -520,22 +524,19 @@ body {
 
     .ingredient-item td:before {
         position: absolute;
+        content: attr(table-head-data);
+        padding: 0.3% 0 2% 15%;
+        font-size: 0.9rem;
         top: 5px;
         left: 5px;
-        padding-right: 10px;
         white-space: nowrap;
         text-align: left;
         font-weight: bold;
     }
 
-    .ingredient-item td:before {
-        content: attr(table-head-data);
-        padding: 2% 0 2% 15%;
-        font-size: 0.9rem;
-    }
-
     .ingredient-item tr {
         border-bottom: 1px solid #6c648b;
+        margin-top: 5%;
     }
 
     .ingredient-item__delete-button {
@@ -575,6 +576,10 @@ body {
         margin-left: 40%;
     }
 
+    .ingredient-container__list {
+        margin: 0 auto;
+    }
+
     .App__greeting {
         grid-column-start: column-1;
         grid-column-end: column-5;
@@ -593,7 +598,7 @@ body {
 
     .ingredient-wrapper {
         grid-template-columns: [column-1] 20px [column-2] 0px [column-3] auto [column-4] 50px [column-5] 20px [column-6];
-        grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 150px [row-5] auto [row-6]30px [row-7] auto [row-8] 50px [row-9] 50px;;
+        grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 150px [row-5] auto [row-6]30px [row-7] auto [row-8] 50px [row-9] 50px;
     }
     .ingredient-container {
         grid-column-start: column-2;
