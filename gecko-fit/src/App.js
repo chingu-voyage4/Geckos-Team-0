@@ -22,6 +22,7 @@ class App extends Component {
         this.showCalc = this.showCalc.bind(this);
         this.closeHelp = this.closeHelp.bind(this);
         this.showAboutUs = this.showAboutUs.bind(this);
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
         this.state = {
             autocomplete: '',
             apiData: [],
@@ -100,6 +101,7 @@ class App extends Component {
     }
     // remove ingredient from ingredient list
     removeIngredient(ingredient) {
+        console.log("removeIngredient: " + typeof ingredient)
         const index = this.state.ingredients.indexOf(ingredient);
         let temp = this.state.quantity;
         temp.splice(index, 1);
@@ -296,6 +298,12 @@ class App extends Component {
         }
     }
 
+    handleRemoveAll() {
+        this.state.ingredients.forEach(i => {
+            this.removeIngredient(i);
+        });
+    }
+
     render() {
         return (
             <div className="App">
@@ -397,11 +405,12 @@ class App extends Component {
                                 />
                             )}
                             {this.state.ingredients.length > 0 && (
-                            <input
-                                className='ingredient-container__analyze__button' 
-                                type='button'
-                                value='Remove All' 
-                                />
+                                <input
+                                    className='ingredient-container__analyze__button' 
+                                    type='button'
+                                    value='Remove All'
+                                    onClick={this.handleRemoveAll}
+                                    />
                             )}
                         </div>
                         <div className="ingredient-container__label">
