@@ -300,6 +300,7 @@ class App extends Component {
     handleRemoveAll() {
         this.state.ingredients.forEach(i => {
             this.removeIngredient(i);
+            this.setState({analysisToggle: false})
         });
     }
 
