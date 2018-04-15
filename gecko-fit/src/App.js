@@ -101,7 +101,6 @@ class App extends Component {
     }
     // remove ingredient from ingredient list
     removeIngredient(ingredient) {
-        console.log("removeIngredient: " + typeof ingredient)
         const index = this.state.ingredients.indexOf(ingredient);
         let temp = this.state.quantity;
         temp.splice(index, 1);
