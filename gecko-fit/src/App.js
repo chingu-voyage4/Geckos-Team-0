@@ -396,6 +396,13 @@ class App extends Component {
                                     onClick={this.showAnalysis}
                                 />
                             )}
+                            {this.state.ingredients.length > 0 && (
+                            <input
+                                className='ingredient-container__analyze__button' 
+                                type='button'
+                                value='Remove All' 
+                                />
+                            )}
                         </div>
                         <div className="ingredient-container__label">
                             <Nutrition
