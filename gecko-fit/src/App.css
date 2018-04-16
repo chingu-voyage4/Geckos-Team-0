@@ -5,7 +5,7 @@ body {
     text-align: center;
     display: grid;
     grid-template-columns: [app-column-1] 100%;
-    grid-template-rows: [app-row-1] 80% [app-row-2] 100px;
+    grid-template-rows: [app-row-1] 5fr [app-row-2] 20vh [app-row-3] 100px;
 }
 
 .App__header {
@@ -350,15 +350,16 @@ body {
 .footer {
     grid-column-start: app-column-1;
     grid-column-end: app-column-1;
-    grid-row-start: app-row-2;
-    grid-row-end: app-row-2;
+    grid-row-start: app-row-3;
+    grid-row-end: app-row-3;
+    justify-self: center;
     display: grid;
-    grid-template-columns: [footer-column-1] 30% [footer-column-2] 30% [footer-column-3] 35%;
+    grid-template-columns: [footer-column-1] 30vw [footer-column-2] 30vw [footer-column-3] 30vw;
     grid-template-rows: [footer-row-1] 50%;
 }
 
 .footer__chingu-link {
-    grid-column: footer-column-1 / footer-column-1;
+    grid-column: footer-column-3 / footer-column-3;
     grid-row: footer-row-1 / footer-row-1;
 }
 
@@ -368,9 +369,9 @@ body {
 }
 
 .footer__edamam-link {
-    grid-column: footer-column-3 / footer-column-3;
+    grid-column: footer-column-1 / footer-column-1;
     grid-row: footer-row-1 / footer-row-1;
-    justify-self: end;
+    justify-self: center;
 }
 
 /* This section is for React-Modals */
@@ -430,7 +431,6 @@ body {
     height: 12rem;
     padding: 0 2rem 2rem 2rem;
     text-align: center;
-    /* position: relative; */
 }
 
 .about-us__modal {
@@ -448,8 +448,6 @@ body {
 }
 
 .calc-container__fields {
-    /* margin-right: 60%; */
-    /* display: inline-block; */
     width: 120px;
     overflow: hidden;
     float: left;
@@ -487,6 +485,9 @@ body {
     .ingredient-container__list {
         width: 60%;
     }
+    .App {
+        grid-template-rows: [app-row-1] 5fr [app-row-2] 28vh [app-row-3] 100px;
+    }
     .App__greeting,
     .ingredient-container {
         justify-self: center;
@@ -498,6 +499,7 @@ body {
     .App__greeting:before {
         left: 60%;
     }
+    
 }
 
 @media screen and (max-width: 800px) {
@@ -565,6 +567,9 @@ body {
     .ingredient-container__submit {
         width: 50%;
         position: relative;
+    }
+    .App {
+        grid-template-rows: [app-row-1] 3fr [app-row-2] 30vh [app-row-3] 100px;
     }
     .App__greeting {
         height: 120px;
@@ -639,9 +644,14 @@ body {
         grid-row-end: search-row-5;
     }
 }
-
 @media screen and (max-width: 400px) {
+    .App {
+        grid-template-rows: [app-row-1] 3fr [app-row-2] 10vh [app-row-3] 100px;
+    }
     .ingredient-container {
         grid-template-columns: [search-column-1] 10px [search-column-2] auto [search-column-3] 20px [search-column-4] 10px;
+    }
+    .footer {
+        justify-self: end;
     }
 }
