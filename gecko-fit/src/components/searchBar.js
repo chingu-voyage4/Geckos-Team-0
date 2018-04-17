@@ -55,7 +55,7 @@ class SearchBar extends Component {
 
   // set user input as selection if no option selected
   handleBlur() {
-    if (this.state.selectedOption === "")
+    if (this.state.selectedOption === "" && this.state.userInput !== "")
       this.setState({
         selectedOption: {
           value: this.state.userInput,
