@@ -91,6 +91,7 @@ class SearchBar extends Component {
             onChange={this.handleOptionSelect} // sets option state (not visible)
             onInputChange={this.handleInputChange} // listener
             options={this.props.apiResult}
+            clearable={false}
           />
           <input
             className="ingredient-container__quantity"
