@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import "./nutrition.css";
 
 class Nutrition extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      servings: 1
-    };
-  }
   // Render nutrition label from App inputs
   render() {
     if (!this.props.analysisToggle) {
@@ -17,7 +11,7 @@ class Nutrition extends Component {
         <section className="performance-facts">
           <header className="performance-facts__header">
             <h1 className="performance-facts__title">Nutrition Facts</h1>
-            <p>Serving Per Recepie {this.state.servings}</p>
+            <p>Servings: 1</p>
           </header>
           <table className="performance-facts__table">
             <thead>
