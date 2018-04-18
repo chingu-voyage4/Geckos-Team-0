@@ -5,7 +5,7 @@ body {
     text-align: center;
     display: grid;
     grid-template-columns: [app-column-1] 100%;
-    grid-template-rows: [app-row-1] 80% [app-row-2] 100px;
+    grid-template-rows: [app-row-1] 5fr [app-row-2] 20vh [app-row-3] 100px;
 }
 
 .App__header {
@@ -89,6 +89,7 @@ body {
     display: inline-block;
     background: rgba(249, 243, 242, 0.35);
     z-index: 4;
+    cursor: pointer;
 }
 
 .navigation__button .is-active {
@@ -234,6 +235,10 @@ body {
 .ingredient-container__quantity {
     height: 1.9rem;
     width: 3em;
+    border-radius: 4px;
+    border-color: #d9d9d9 #ccc #b3b3b3;
+    border: 1px solid #ccc;
+    cursor: default;
     grid-column-start: search-column-4;
     grid-column-end: search-column-5;
     grid-row-start: search-row-2;
@@ -295,6 +300,7 @@ body {
     outline: 0;
     height: 2rem;
     width: 8rem;
+    margin: 0 1rem 0 1rem;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
         0 3px 1px -2px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.28s cubic-bezier(0.5, 0, 0.3, 1);
@@ -313,7 +319,7 @@ body {
 .ingredient-container__label {
     grid-column-start: column-3;
     grid-column-end: column-4;
-    grid-row-start: row-7;
+    grid-row-start: row-9;
     grid-row-end: span 3;
     margin: 0 auto;
 }
@@ -344,15 +350,16 @@ body {
 .footer {
     grid-column-start: app-column-1;
     grid-column-end: app-column-1;
-    grid-row-start: app-row-2;
-    grid-row-end: app-row-2;
+    grid-row-start: app-row-3;
+    grid-row-end: app-row-3;
+    justify-self: center;
     display: grid;
-    grid-template-columns: [footer-column-1] 30% [footer-column-2] 30% [footer-column-3] 35%;
+    grid-template-columns: [footer-column-1] 30vw [footer-column-2] 30vw [footer-column-3] 30vw;
     grid-template-rows: [footer-row-1] 50%;
 }
 
 .footer__chingu-link {
-    grid-column: footer-column-1 / footer-column-1;
+    grid-column: footer-column-3 / footer-column-3;
     grid-row: footer-row-1 / footer-row-1;
 }
 
@@ -362,9 +369,9 @@ body {
 }
 
 .footer__edamam-link {
-    grid-column: footer-column-3 / footer-column-3;
+    grid-column: footer-column-1 / footer-column-1;
     grid-row: footer-row-1 / footer-row-1;
-    justify-self: end;
+    justify-self: center;
 }
 
 /* This section is for React-Modals */
@@ -424,7 +431,6 @@ body {
     height: 12rem;
     padding: 0 2rem 2rem 2rem;
     text-align: center;
-    /* position: relative; */
 }
 
 .about-us__modal {
@@ -434,7 +440,7 @@ body {
 }
 
 .about-us__link {
-    color: #FBA100;
+    color: #fba100;
     text-decoration: none;
 }
 .about-us__link:hover {
@@ -442,8 +448,6 @@ body {
 }
 
 .calc-container__fields {
-    /* margin-right: 60%; */
-    /* display: inline-block; */
     width: 120px;
     overflow: hidden;
     float: left;
@@ -481,6 +485,9 @@ body {
     .ingredient-container__list {
         width: 60%;
     }
+    .App {
+        grid-template-rows: [app-row-1] 5fr [app-row-2] 28vh [app-row-3] 100px;
+    }
     .App__greeting,
     .ingredient-container {
         justify-self: center;
@@ -492,6 +499,7 @@ body {
     .App__greeting:before {
         left: 60%;
     }
+    
 }
 
 @media screen and (max-width: 800px) {
@@ -501,6 +509,10 @@ body {
     .ingredient-item td,
     .ingredient-item__delete-button {
         display: block;
+    }
+
+    .ingredient-container__list {
+        margin-right: 5%;
     }
 
     .ingredient-item__head-row {
@@ -520,22 +532,19 @@ body {
 
     .ingredient-item td:before {
         position: absolute;
+        content: attr(table-head-data);
+        padding: 0.3% 0 2% 15%;
+        font-size: 0.9rem;
         top: 5px;
         left: 5px;
-        padding-right: 10px;
         white-space: nowrap;
         text-align: left;
         font-weight: bold;
     }
 
-    .ingredient-item td:before {
-        content: attr(table-head-data);
-        padding: 2% 0 2% 15%;
-        font-size: 0.9rem;
-    }
-
     .ingredient-item tr {
         border-bottom: 1px solid #6c648b;
+        margin-top: 5%;
     }
 
     .ingredient-item__delete-button {
@@ -559,6 +568,9 @@ body {
         width: 50%;
         position: relative;
     }
+    .App {
+        grid-template-rows: [app-row-1] 3fr [app-row-2] 30vh [app-row-3] 100px;
+    }
     .App__greeting {
         height: 120px;
         top: 0;
@@ -573,6 +585,10 @@ body {
 
     .ingredient-item__delete-button {
         margin-left: 40%;
+    }
+
+    .ingredient-container__list {
+        margin: 0 auto;
     }
 
     .App__greeting {
@@ -593,7 +609,7 @@ body {
 
     .ingredient-wrapper {
         grid-template-columns: [column-1] 20px [column-2] 0px [column-3] auto [column-4] 50px [column-5] 20px [column-6];
-        grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 150px [row-5] auto [row-6]30px [row-7] auto [row-8] 50px [row-9] 50px;;
+        grid-template-rows: [row-1] 30% [row-2] 100px [row-3] auto [row-4] 150px [row-5] auto [row-6]30px [row-7] auto [row-8] 50px [row-9] 50px;
     }
     .ingredient-container {
         grid-column-start: column-2;
@@ -628,9 +644,14 @@ body {
         grid-row-end: search-row-5;
     }
 }
-
 @media screen and (max-width: 400px) {
+    .App {
+        grid-template-rows: [app-row-1] 3fr [app-row-2] 10vh [app-row-3] 100px;
+    }
     .ingredient-container {
         grid-template-columns: [search-column-1] 10px [search-column-2] auto [search-column-3] 20px [search-column-4] 10px;
+    }
+    .footer {
+        justify-self: end;
     }
 }
